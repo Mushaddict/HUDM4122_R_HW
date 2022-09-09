@@ -1,0 +1,61 @@
+---
+title: "HW01"
+author: "Shijie An"
+date: "2022-09-09"
+output: html_document
+---
+
+# Section 1
+```{r first, comment="##"}
+first <- c(1:10)
+first
+```
+```{r second}
+second <- seq(from = 0, to = 100, by = 10)
+second
+```
+```{r third} 
+third <- rep(x = seq(from = 1, to = 9, by = 2), each = 10)
+third
+```
+# Section 2
+```{r numeric}
+x <- 10
+x <- x + 1
+x <- x * 5 + 1
+x
+```
+# Section 3
+```{r surprise}
+## will print fibonacci number of first 10 digits
+f <- numeric(10)
+f[1] <- 1
+f[2] <- 1
+ for(i in 3:10) {
+   f[i] <- f[i - 2] + f[i - 1]
+ }
+f
+```
+
+# plot
+```{r plot, echo=FALSE}
+x <- sample(1:10, size = 10, replace = TRUE)
+y <- sample(1:10, size = 10, replace = TRUE)
+plot(x = x, y = y, main = "My Graph", xlab = "x-axis", ylab = "y-axis", col = "red")
+```
+
+# features
+## feature 1: code chuncks
+The use of code chunks is very helpful, it provides us and convinient
+ way to insert the code for other languages such as python, ds.js, or
+ SQL. <br/>
+ 
+## feature 2: Set Global Options
+The "Set Global Options" really helps to make some options for our chunck code, such as the difference between ```comment = ""``` and ```comment = "##" ```gives the different prefix when we have our result printing out. <br/>
+
+## feature 3: 
+The RMarkdown can even insert tables here. When we have a sheet with our codes, we can output an good-looking visualized data from the output. That helps programmer to check with their data. For example: <br/>
+```{r}
+data <- faithful[1:4, ]
+knitr::kable(data, caption = "Table with kable")
+```
