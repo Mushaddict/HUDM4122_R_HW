@@ -5,3 +5,17 @@ date: "2022-09-12"
 output: html_document
 ---
 
+## Introduction to R
+### Vectors 
+```{r example}
+v <- c(140, -50, 20, -120, 240)
+```
+If we want to change names, we can do: 
+```{r} 
+poker_vector <- c(140, -50, 20, -120, 240)
+names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+```java
+for (int i = 0; i < 1; i++) {}
+
+```
