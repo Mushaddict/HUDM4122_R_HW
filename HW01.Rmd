@@ -18,6 +18,12 @@ second
 third <- rep(x = seq(from = 1, to = 9, by = 2), each = 10)
 third
 ```
+In case I don't understand the numbered list correctly, I will put another list here. 
+```{r numList} 
+numList <- list(c(1:10), seq(from = 0, to = 100, by = 10),  rep(x = seq(from = 1, to = 9, by = 2), each = 10))
+numList
+```
+
 # Section 2
 ```{r numeric}
 x <- 10
