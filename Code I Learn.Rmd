@@ -46,5 +46,4 @@ r <- rep(c(1:3), times = 2, each = 3)
 ```
 
 
-
 ### 2. Matrix
