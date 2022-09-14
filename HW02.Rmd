@@ -1,0 +1,42 @@
+---
+title: "HW02"
+author: "Shijie An"
+date: '2022-09-14'
+output: html_document
+---
+
+## 1. 
+```{r, echo=TRUE}
+path <- "states.csv"
+states <- read.csv(path)
+```
+```{r echo = TRUE}
+income <- states[[3]]
+income
+length <- length(income)
+length
+class(income)
+colnames(states[3])
+```
+
+## 2. 
+```{r echo = TRUE} 
+## the 5th element
+states[5, ]
+## the 50th element
+states[50, ]
+## 40th through 50th elements
+states[40:50, ]
+```
+
+## 3. boxplots
+```{r base R boxplot, echo = TRUE}
+boxplot(income, 
+        horizontal = TRUE, 
+        xlab = "US states Income in 1974")
+median(income)
+quantile(income, probs = c(.25, .5, .75))
+## so we have IQR = .75 - .25
+IQR <- 4813.50 - 3992.75
+IQR
+```
