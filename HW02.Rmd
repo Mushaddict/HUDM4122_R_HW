@@ -30,13 +30,122 @@ states[40:50, ]
 ```
 
 ## 3. boxplots
+Base R boxplot
 ```{r base R boxplot, echo = TRUE}
 boxplot(income, 
         horizontal = TRUE, 
-        xlab = "US states Income in 1974")
+        xlab = "Incomes", 
+        main = "US states Income in 1974 (base R plot)")
+```
+
+ggplot 2
+```{r ggplot, echo = TRUE}
+library(ggplot2)
+ggplot(data = states, mapping = aes(x = income)) + 
+  geom_boxplot() +
+  xlab("Incomes") + 
+  ggtitle("US states income in 1974 (ggplot2)")
+```
+
+```{r}
 median(income)
 quantile(income, probs = c(.25, .5, .75))
 ## so we have IQR = .75 - .25
+# So Q1 = 3992.75, Q2 = 4519, Q3 = 4813.5
 IQR <- 4813.50 - 3992.75
 IQR
+# So we have IQR = Q3 - Q1 = 820.75
+# so the lower fence should be Q1 - 1.5 * IQR, which is: 
+lower_fence <- 3992.75 - 1.5 * 820.75
+lower_fence
+# And upper fence should be Q3 + 1.5 * IQR, which is: 
+upper_fence <- 4813.50 + 1.5 * 820.75
+upper_fence
+# So we can see that the lowest value, which is 3098, is within the lower fence of the income. 
+# And the greatest number 6315 is beyond the upper fence, so it is an outlier. 
+# So the second greatest income, 5348, is the greatest normal value showing in the boxplot. 
 ```
+
+## 4. histograms
+Base R histogram
+```{r base R, echo = TRUE}
+hist(income, breaks = seq(3000, 6500, 500), 
+     xlab = "US states income in 1974 (base R histogram)", 
+     main = "Frequency histogram with 7 bins")
+```
+
+ggplot2 histogram
+```{r echo = TRUE}
+ggplot(data = states, mapping = aes(x = income)) + 
+  geom_histogram(breaks = seq(3000, 6500, 500), 
+                 col = "red", fill = "cadetblue3") + 
+  xlab("US states income in 1974 (ggplot2 histogram)") + 
+  ggtitle("Frequency histogram with 7 bins")
+```
+
+Or we have have the histograms with 14 bins, so that will be like: 
+```{r echo = TRUE}
+ggplot(data = states, mapping = aes(x = income)) + 
+  geom_histogram(breaks = seq(3000, 6500, 250), 
+                 col = "red", fill = "cadetblue3") + 
+  xlab("US states income in 1974 (ggplot2 histogram)") + 
+  ggtitle("Frequency histogram with 14 bins")
+```
+
+For the 7 and 14 bins of histogram, I prefer the 14th, because it looks more clear. 
+And with higher frequencies you will see different sections of income more clear. 
+
+## 5. kernel density plots
+Base R kernel density plot
+```{r base R kernal density plot, echo = TRUE}
+plot(density(income), 
+     xlab = "US states income in 1974 (base R histogram)", 
+     main = "Kernel Density plot")
+```
+
+ggplot2 kernel density plot
+```{r, echo = TRUE} 
+ggplot(data = states, mapping = aes(x = income)) + 
+  geom_density(col = "steelblue", lwd = 1.05) + 
+  xlab("US states income in 1974 (ggplot2 histogram)") + 
+  ggtitle("Kernel Density plot")
+```
+
+The difference between kernel density plot and histogram is that the histogram 
+looks more like being visualized by the discrete data, but kernel density plot
+looks more like a continuous data. The kernel density plot is more likely to 
+separate the bins in the histogram so that every "bin" of kernel density plot 
+is some close number, so that the kernel looks to be more smooth. Histogram 
+looks like a Riemann sum of the kernel density plot. 
+
+## 6. QQ plots
+Base R QQ plot
+```{r echo = TRUE}
+qqnorm(y = income, 
+       ylim = c(3000, 6500), 
+       main =  "Normal QQ plot for State Income in 1974 (base R)")
+qqline(y = income)
+```
+
+ggplot qq plot
+```{r echo = TRUE}
+ggplot(data = states, mapping = aes(sample = income)) + 
+  geom_qq(distribution = stats::qnorm) +
+  geom_qq_line(distribution = stats::qnorm) +
+  xlab("Theoretical normal quantiles") + 
+  ylab("Samples quantiles") + 
+  ggtitle("Normal QQ plot for state Income in 1974 (ggplot)")
+```
+
+The QQ plot indicates the hypothesis that the distribution of income is normally
+distributed. The plots showed how scattered each point is aligned with the 
+straight line. As each point is close to the straight line, that means the income
+is more likely to be normal distributed. As we can see from this plot, each point
+is close to the straight line, except the biggest num, which would be a outlier 
+if we used in boxplot. We can also check if the income is normally distributed 
+by using Shapiro-wilk normality test:
+```{r echo = TRUE} 
+shapiro.test(income)
+```
+We can see the value of W is close to 1, and the p-value is lower than 0.5, which
+tells us that the sample data is almost normally distributed. 

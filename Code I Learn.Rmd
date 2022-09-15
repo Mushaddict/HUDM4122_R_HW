@@ -61,3 +61,23 @@ statess <- read.csv(file = path)
 ```
 
 ### 2. Matrix
+
+
+
+
+
+
+
+### 先放到一个地方
+
+```{r echo = TRUE}
+# generate a random seed
+set.seed(1234)
+# generate a sequence of 50 qnorms num
+quant1 <- qnorm(p = seq(0.02, 1, 0.02))
+plot(quant1, sort(income), 
+     xlab = "Normal quantiles for 50 points", 
+     ylab = "Incomes", 
+     main = "Normal QQ plot")
+abline(a = mean(income), b = sd(income), lwd = 2)
+```
