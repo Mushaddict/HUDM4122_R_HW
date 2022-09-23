@@ -5,20 +5,27 @@ date: "2022-09-22"
 output: html_document
 ---
 
+```{r setup}
+library(tidyverse)
+library(dplyr)
+```
+
 ## 1. There is a a set in R called mtcars
 
-### a. Is mtcars a data frame or a matrix? If it is not a data frame, make it one using data.frame(). 
+### a. Is mtcars a data frame or a matrix? If it is not a data frame, make it one using data.frame().
+
 ```{r mtcars, echo = TRUE}
 # typeof(mtcars)
+mtcars <- mtcars
 class(mtcars)
 # mtcars is a list, it is already a data frame. 
 ## mtcars <- data.frame(matrix(unlist(mtcars), nrow = length(mtcars), byrow = TRUE))
-mtcars
 ```
 
-### b. Access the help file on mtcars and summarize the brief description of the data set. 
-```{r help file, echo = TRUE} 
-?mtcars
+### b. Access the help file on mtcars and summarize the brief description of the data set.
+
+```{r help file, echo = TRUE}
+# ?mtcars
 ## The mtcars is mainly talk about of 11 aspects of automobile design and 
 ## performance for 32 automobiles. It has several numeric variables such as mpg,
 # of cylinders, displacement, gross horsepower, Rear axle ratio, weight, 1/4 
@@ -26,22 +33,91 @@ mtcars
 ```
 
 ### c. Of the variables in mtcars all are of class numeric. That said, are there any that it would make sense to call categorical? Which ones and why?
-```{r, echo = TRUE} 
+
+```{r, echo = TRUE}
 str(mtcars)
 ## It can be seen that vs is categorical, because it is a nominal type of data 
 ## with only 0 = V-shaped, and 1 = straight options. am is also categorical, 
 ## because it is only 0 = automatic, and 1 = manual options . 
 ```
 
-## 2.  Create a scatterplot of the relationship between horsepower (horizontal axis) and miles per gallon (vertical axis). Add a linear regression line to the  plot and describe the relationship in words in context. Do this in both base R and ggplot2.
+## 2. Create a scatterplot of the relationship between horsepower (horizontal axis) and miles per gallon (vertical axis). Add a linear regression line to the plot and describe the relationship in words in context. Do this in both base R and ggplot2.
 
+```{r scatterplot base R, echo = TRUE}
+plot(x = mtcars$hp,
+     y = mtcars$mpg,
+     cex = 1.5,
+     bg = 2,
+     col = "blue",
+     xlab = "Horsepower",
+     ylab = "Miles Per Gallon",
+     main = "1974 Motor Trend")
+lm1 <- lm(formula = mtcars$mpg ~ mtcars$hp, data = mtcars)
+abline(lm1, col = "steelblue", lty = 2, lwd = 2)
+```
+
+```{r scatterplot ggplot2, echo = TRUE}
+mtcars %>%
+  ggplot(aes(x = hp, y = mpg)) + 
+  geom_smooth(method = "lm", formula = y~x, se = FALSE, 
+              color = "steelblue", linetype = "dashed") +
+  geom_point(cex = 1.5, col = "blue") + 
+  xlab("Horsepower") + 
+  ylab("Miles Per Gallon") +  
+  ggtitle("1974 Motor Trend")
+
+```
 
 ## 3. Make a conditional violin plot with superimposed boxplots in ggplot2 of miles per gallon conditional on transition type (automatic or not). Interpret the plot in context.
 
-
+```{r violinplot}
+mtcars %>% 
+  ggplot(aes(x = factor(am), y = mpg)) + 
+  geom_violin() + 
+  geom_boxplot(width = .1)  +
+  xlab("transmission type") + 
+  ylab("miles per gallon") + 
+  ggtitle("1974 Motor Trend")
+## Intepret the context 还没写呢 记得！记得！
+```
 
 ## 4. Use factor() to add factor versions of the variables gear and cyl. Create dodged and stacked bar charts in ggplot2. For your stacked bar charts, look up how to normalize the bars so that they equal 100% and do that. Interpret the results in context.
 
+```{r factor}
+# add factor version as gear_f and cyl_f
+mtcars <- mtcars %>%
+  mutate(gear_f = factor(x = mtcars$gear, 
+                         labels = c("3 forward gears", "4 forward gears", "5 forward gears"), 
+                         levels = c(3, 4, 5)),
+         cyl_f = factor(x = mtcars$cyl, 
+                        labels = c("4 cylinders", "6 cylinders", "8 cylinders"), 
+                        levels = c(4, 6, 8)))
 
+
+```
+
+```{r doged bar}
+mtcars %>% 
+  ggplot(aes(x = gear_f, fill = cyl_f)) + 
+  geom_bar(position = "dodge") + 
+  xlab("Number of forward gears") + 
+  ylab("Count Numbers") + 
+  ggtitle("1974 Motor Trend") + 
+  guides(fill = guide_legend(title = "Number of cylinders"))
+```
+
+```{r stacked bar}
+mtcars %>% 
+  ggplot(aes(x = gear_f, fill = cyl_f)) + 
+  geom_bar(position = "stack") + 
+  xlab("Number of forward gears") + 
+  ylab("Count Numbers") + 
+  ggtitle("1974 Motor Trend") + 
+  guides(fill = guide_legend(title = "Number of cylinders"))
+```
 
 ### 5. Use mtcars data to create a scatterplot that pulls in multivariate information like we did with the state abbreviations and regions in class. Surprise me.
+
+```{r multivariate information}
+
+```
