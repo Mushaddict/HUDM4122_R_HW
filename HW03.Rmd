@@ -54,7 +54,9 @@ plot(x = mtcars$hp,
      main = "1974 Motor Trend")
 lm1 <- lm(formula = mtcars$mpg ~ mtcars$hp, data = mtcars)
 abline(lm1, col = "steelblue", lty = 2, lwd = 2)
+## It shows the relationship between horsepower and mpg is that when horsepower increases, mpg tends to decrease. It follows the trend that it a downward trend. 
 ```
+
 
 ```{r scatterplot ggplot2, echo = TRUE}
 mtcars %>%
