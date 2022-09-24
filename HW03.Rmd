@@ -78,7 +78,7 @@ mtcars %>%
   xlab("transmission type") + 
   ylab("miles per gallon") + 
   ggtitle("1974 Motor Trend")
-## Intepret the context 还没写呢 记得！记得！
+## the plot has shown different types of eith automatic transmission or manual transmission. The 0 represents automatic transmission, which has a higher density on its median point in which it can make to 17.5 miles per gallon during its transmission. And for the manual transmission, it has almost 22.5 miles per gallon during its manual transmission and most of the data are gathered around 22.5. It can be told that automatic and manual transmission have the different trend of mpg. 
 ```
 
 ## 4. Use factor() to add factor versions of the variables gear and cyl. Create dodged and stacked bar charts in ggplot2. For your stacked bar charts, look up how to normalize the bars so that they equal 100% and do that. Interpret the results in context.
@@ -119,5 +119,16 @@ mtcars %>%
 ### 5. Use mtcars data to create a scatterplot that pulls in multivariate information like we did with the state abbreviations and regions in class. Surprise me.
 
 ```{r multivariate information}
-
+mtcars <- mtcars %>%
+  mutate(vs_c = factor(vs, levels = c(0, 1), labels = c("V", "S")))
+mtcars %>%
+  ggplot(aes(x = mpg, y = hp)) + 
+  geom_text(mapping = aes(label = vs_c, color = cyl_f), show.legend = TRUE) + 
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, 
+              color = "steelblue", linetype = "dashed") + 
+  xlab("Miles per Gallon") + 
+  ylab("Horsepower") + 
+  ggtitle("Engine's relation between horsepower and mpg with numbers of cylinder") + 
+  guides(fill = guide_legend(title = "Number of cylinders"))
+## This graph shows that in relation between horsepower and mpg, as mpg goes up, people are more likely to use straight engine rather than V-shaped ones. And when people are using straight engine, they tend to use the one with fewer cylinders. However, people who like V-shaped engines tend to use 4 cylinders. 
 ```
