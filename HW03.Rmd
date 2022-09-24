@@ -106,16 +106,19 @@ mtcars %>%
   ylab("Count Numbers") + 
   ggtitle("1974 Motor Trend") + 
   guides(fill = guide_legend(title = "Number of cylinders"))
+## This dodge plot has showed for different numbers (3, 4, 5) of forward gears, each number of gears has a number of (4, 6, 8) cylinders in it. The 3 forward gears has most 8 cylinders, which is almost 12. 4 foward gears doesn't have any 6 cylinders. And 5 foward gears has a lowest numbers of each cylinders. 
 ```
 
 ```{r stacked bar}
+## position = "fill" works like stacking, but makes each set of stacked bars the same height. This makes it easier to compare proportions across groups.
 mtcars %>% 
   ggplot(aes(x = gear_f, fill = cyl_f)) + 
-  geom_bar(position = "stack") + 
+  geom_bar(position = "fill") +  ## instead of "stack", using "fill"
   xlab("Number of forward gears") + 
   ylab("Count Numbers") + 
   ggtitle("1974 Motor Trend") + 
   guides(fill = guide_legend(title = "Number of cylinders"))
+## By using "fill" as "stack", we have see the y-axis of the plot it the proportion of each cylinders. Though it has the same result as I describe above, it is more clearly to represent the different proportion of 4, 6, 8 numbers of cylinders.
 ```
 
 ### 5. Use mtcars data to create a scatterplot that pulls in multivariate information like we did with the state abbreviations and regions in class. Surprise me.
