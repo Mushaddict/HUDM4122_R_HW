@@ -6,10 +6,11 @@ output: html_document
 ---
 ```{r preload}
 library(ggplot2)
-load("/Users/anshijie/Desktop/D/CU TC/HUDK 5026 intro R/HUDM5026_R_HW/acupuncture.Rdata")
+load("acupuncture.Rdata")
 ```
+
 ## 1. Find the minimum (see function min(), 1st quartile (i.e., 25th percentile; see function quantile(), median (see function median(), 3rd quartile (i.e., 75th percentile; see function quantile()), and maximum (see function max() values of pk1 and pk5
-```{r question1, include=FALSE}
+```{r question1}
 
 ## minimum
 min(acupuncture$pk1, na.rm = TRUE)
@@ -72,10 +73,23 @@ box_plot <- function(acu) {
   median <- quantile(acu, probs = .5)
   q3st <- quantile(acu, probs = .75)
   max <- max(acu, na.rm = TRUE)
-  boxplot(acu, horizontal = TRUE)
+  out <- c(min, q1st, median, q3st, max)
+  
+  boxplot(acu, horizontal = TRUE, 
+          xlab = "number",
+          ylab = "acupuncture pk",
+          main = "box plot of acupuncture")
+  abline(v = min, lty = 2)
+  abline(v = q1st, lty = 2)
+  abline(v = median, lty = 2)
+  abline(v = q3st, lty = 2)
+  abline(v = max, lty = 2)
+  
+  text(t(out))
 }
+## draw boxplot for pk1
 box_plot(acupuncture$pk1)
-
-
+## draw boxplot for pk5
+box_plot(acupuncture$pk5)
 ```
 
