@@ -1,0 +1,81 @@
+---
+title: "HW04"
+author: "Shijie An"
+date: '2022-09-27'
+output: html_document
+---
+```{r preload}
+library(ggplot2)
+load("/Users/anshijie/Desktop/D/CU TC/HUDK 5026 intro R/HUDM5026_R_HW/acupuncture.Rdata")
+```
+## 1. Find the minimum (see function min(), 1st quartile (i.e., 25th percentile; see function quantile(), median (see function median(), 3rd quartile (i.e., 75th percentile; see function quantile()), and maximum (see function max() values of pk1 and pk5
+```{r question1, include=FALSE}
+
+## minimum
+min(acupuncture$pk1, na.rm = TRUE)
+min(acupuncture$pk5, na.rm = TRUE)
+## 1st quantile 
+quantile(acupuncture$pk1, probs = 0.25)
+quantile(acupuncture$pk5, probs = 0.25)
+## median
+median(acupuncture$pk1, na.rm = TRUE)
+median(acupuncture$pk5, na.rm = TRUE)
+## 3st quantile 
+quantile(acupuncture$pk1, probs = 0.75)
+quantile(acupuncture$pk5, probs = 0.75)
+## maximum
+max(acupuncture$pk1, na.rm = TRUE)
+max(acupuncture$pk5, na.rm = TRUE)
+```
+
+## 2. Write a function that calculates the min, Q1, median, Q3, and max values of a vector. Then, apply the function to age, sex, migraine, chronicity, pk1 and pk5
+```{r question2}
+## @param acu acupuncture
+## @return out min, q1st, median, q3st, max
+call_out <- function(acu) {
+  min <- min(acu, na.rm = TRUE)
+  q1st <- quantile(acu, probs = .25)
+  median <- quantile(acu, probs = .5)
+  q3st <- quantile(acu, probs = .75)
+  max <- max(acu, na.rm = TRUE)
+  out <- c(min, q1st, median, q3st, max)
+  out
+}
+call_out(acupuncture$age)
+call_out(acupuncture$sex)
+call_out(acupuncture$chronicity)
+call_out(acupuncture$pk1)
+call_out(acupuncture$pk5)
+# by(data = acupuncture$age,
+#    INDICES = acupuncture$group,
+#    FUN = call_out, 
+#    na.rm = TRUE)
+```
+
+## 3. Summarize the output from the last item in a table. Use R Markdown to make a table - see here
+
+|            | min  | q1st  | median | q2st  | Max   |
+| ---------- | ---- | ----- | ------ | ----- | ----- |
+| age        | 18   | 41    | 48     | 54    | 65    |
+| sex        | 0    | 1     | 1      | 1     | 1     |
+| chronicity | 1    | 10    | 20     | 31    | 54    |
+| pk1        | 6.75 | 14.50 | 20.25  | 33.00 | 94.75 |
+| Pk5        | 0.00 | 8.50  | 15.00  | 25.25 | 87.25 |
+
+
+
+## 4. Write a function that plots a boxplot of a vector and also reports the min, Q1, median, Q3, and max. Then apply the function to pk1 and pk5. Tip: use your function from the last part to help you write this function.
+```{r plot} 
+box_plot <- function(acu) {
+  min <- min(acu, na.rm = TRUE)
+  q1st <- quantile(acu, probs = .25)
+  median <- quantile(acu, probs = .5)
+  q3st <- quantile(acu, probs = .75)
+  max <- max(acu, na.rm = TRUE)
+  boxplot(acu, horizontal = TRUE)
+}
+box_plot(acupuncture$pk1)
+
+
+```
+
