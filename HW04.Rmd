@@ -86,6 +86,7 @@ box_plot <- function(acu) {
   abline(v = max, lty = 2)
   
   text(t(out))
+  print(out)
 }
 ## draw boxplot for pk1
 box_plot(acupuncture$pk1)
