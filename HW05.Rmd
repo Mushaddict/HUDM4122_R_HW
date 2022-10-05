@@ -1,0 +1,109 @@
+---
+title: "HW05"
+author: "Shijie An"
+date: '2022-10-04'
+output: html_document
+---
+
+```{r setup}
+library(tidyverse)
+```
+
+1. Import the data using `read_csv()` and call it `acu`. Note that the data have a header row.
+```{r}
+acu <- read.csv("acupuncture.csv")
+```
+
+2. Use base R to calculate the mean and sd for each variable in the data set using `apply()`
+```{r}
+## mean for each element
+apply(acu, MARGIN = 2, mean)
+## sd for each element
+apply(acu, MARGIN = 2, sd)
+```
+
+3. Use the `by()` function to calculate the mean `pk5` score by treatment group. Are you
+comfortable making a conclusion about the efficacy of acupuncture based on these
+means? Why or why not?
+```{r}
+by(
+  data = acu$pk5, 
+  INDICES = acu$group, 
+  FUN = mean
+)
+## It cannot be concluded about efficacy by only telling the relationship of group and severity of pk5. It needs more information other than groups. 
+```
+
+4. Use base R to create a new variable called `diff` by calculating the difference score
+(post - pre) for headache severity rating.
+```{r}
+diff <- acu$pk5 - acu$pk1
+diff
+```
+
+5. Use base R to create a new variable called `remission` that is a 1 if a person’s score
+dropped by 10 points or more and a 0 if not.
+```{r}
+remission <- ifelse(diff <= -10, 1, 0)
+remission
+```
+
+6. Use tidyverse functions to replicate (3) - (5), calling the variables `diff2` and `remission2`
+```{r}
+acu %>% 
+  group_by(group) %>% 
+  summarize(mean(pk5))
+acu <- acu %>% 
+  mutate(diff2 = pk5 - pk1)
+acu$diff2
+acu <- acu %>% 
+  mutate(remission2 = ifelse(diff2 <= -10, 1, 0))
+acu$remission2
+```
+
+7. Create a scatterplot of baseline headache severity rating (horizontal axis) vs 1-year
+headache severity rating (vertical axis) using base R.
+```{r}
+plot(acu$pk1, acu$pk5, xlab = "PK1", ylab = "PK5",
+     main = "baseline headache severity rating vs 1-year headache severity rating")
+```
+
+8. Use `ggplot2`to replicate (7).
+```{r}
+acu %>%
+  ggplot(aes(x = pk1, y = pk5)) + 
+  geom_point() + 
+  xlab("PK1") + 
+  ylab("PK5") + 
+  ggtitle("aseline headache severity rating vs 1-year headache severity rating")
+```
+
+9. In either base R or ggplot2, take your pick, incorporate information on treatment
+group and sex into the plot. Consider using color, point character, point size, or other
+graphical elements. Be sure to include a legend.
+```{r}
+# acu <- acu %>%
+#   mutate(group = factor(x = group,
+#                            labels = c("0", "1"),
+#                            levels = c(0, 1)),
+#             sex = factor(x = sex,
+#                          labels = c("male", "female"),
+#                          levels = c(0, 1)))
+
+acu %>% 
+  mutate(group = factor(x = group,
+                           labels = c("Group 0", "Group 1"),
+                           levels = c(0, 1)),
+            sex = factor(x = sex,
+                         labels = c("male", "female"),
+                         levels = c(0, 1))) %>%
+  ggplot(aes(x = factor(sex), y = pk1))  + 
+  geom_text(mapping = aes(label = group, color = group)) + 
+  geom_boxplot()
+```
+
+10. Try to replicate what you did in (9) with the other plotting platform. I.e., if you used
+base R, now try to replicate using ggplot (or vice versa)
+```{r}
+plot(acu$sex~acu$group)
+```
