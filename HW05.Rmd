@@ -82,14 +82,6 @@ acu %>%
 group and sex into the plot. Consider using color, point character, point size, or other
 graphical elements. Be sure to include a legend.
 ```{r}
-# acu <- acu %>%
-#   mutate(group = factor(x = group,
-#                            labels = c("0", "1"),
-#                            levels = c(0, 1)),
-#             sex = factor(x = sex,
-#                          labels = c("male", "female"),
-#                          levels = c(0, 1)))
-
 acu %>% 
   mutate(group = factor(x = group,
                            labels = c("Group 0", "Group 1"),
@@ -97,13 +89,24 @@ acu %>%
             sex = factor(x = sex,
                          labels = c("male", "female"),
                          levels = c(0, 1))) %>%
-  ggplot(aes(x = factor(sex), y = pk1))  + 
-  geom_text(mapping = aes(label = group, color = group)) + 
-  geom_boxplot()
+  ggplot(aes(x = pk1, y = pk5, color = group, shape = sex))  + 
+  geom_point() + 
+  scale_color_manual(values = c("#89ABE3FF", "#EA738DFF")) + 
+  ggtitle("aseline headache severity rating vs 1-year headache severity rating")
 ```
 
 10. Try to replicate what you did in (9) with the other plotting platform. I.e., if you used
 base R, now try to replicate using ggplot (or vice versa)
 ```{r}
-plot(acu$sex~acu$group)
+cols <- c("#89ABE3FF", "#EA738DFF")
+
+plot(acu$pk1~ acu$pk5, xlab = "PK1", ylab = "PK5", 
+     col = factor(acu$sex), 
+     pch = acu$group,
+     main = "baseline headache severity rating vs 1-year headache severity rating")
+legend(
+  x = "bottomright",
+  legend = c("Group 0", "Group 1"),
+  fill = c("red", "black")
+)
 ```
