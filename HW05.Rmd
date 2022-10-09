@@ -38,14 +38,15 @@ by(
 (post - pre) for headache severity rating.
 ```{r}
 diff <- acu$pk5 - acu$pk1
-diff
+acu <- mutate(acu, diff)
+acu$diff
 ```
 
 5. Use base R to create a new variable called `remission` that is a 1 if a person’s score
 dropped by 10 points or more and a 0 if not.
 ```{r}
-remission <- ifelse(diff <= -10, 1, 0)
-remission
+acu <- mutate(acu, remission <- ifelse(diff <= -10, 1, 0))
+acu$remission
 ```
 
 6. Use tidyverse functions to replicate (3) - (5), calling the variables `diff2` and `remission2`
@@ -98,15 +99,15 @@ acu %>%
 10. Try to replicate what you did in (9) with the other plotting platform. I.e., if you used
 base R, now try to replicate using ggplot (or vice versa)
 ```{r}
-cols <- c("#89ABE3FF", "#EA738DFF")
-
 plot(acu$pk1~ acu$pk5, xlab = "PK1", ylab = "PK5", 
      col = factor(acu$sex), 
      pch = acu$group,
      main = "baseline headache severity rating vs 1-year headache severity rating")
 legend(
   x = "bottomright",
-  legend = c("Group 0", "Group 1"),
-  fill = c("red", "black")
+  legend = c("Group 0", "Group 1", "male", "female"),
+  title = "Group and Sex",
+  col = c("red", "black", "black", "black"), 
+  pch = c(16, 16, 1, 0)
 )
 ```
