@@ -1,0 +1,146 @@
+---
+title: "HW06"
+author: "Shijie An"
+date: '2022-10-11'
+output: html_document
+---
+
+```{r setup}
+library(tidyverse)
+library(car)
+
+```
+
+## Part1. MULTIVARIATE PLOTTING
+Use `read_csv()` from *tidyverse* to import the data file named “decath.csv”, which you
+can find in the homework folder at the Files section of Canvas. These data include the
+scores for the 33 competitors in the men’s decathlon at the 1988 Olympic Games. The
+events are 100 meters (100), long jump (long), shotput (poid), high jump (haut), 400
+meters (400), 110-meter hurdles (110), discus throw (disq), pole vault (perc), javelin
+(jave) and 1500 meters (1500)
+
+* Is it a tibble? Describe how you can tell? (Hint, after loading tidyverse, check
+out `is.tibble()`.
+* Use `print()` to print out the entire data set. (Hint, see arguments n = and
+width = .)
+```{r}
+decath <- read.csv("decath.csv")
+is_tibble(decath)
+## The deacth is not tibble, it returns false when I use is_tibble(), because decath is a data frame. 
+print(decath)
+```
+
+
+2. Use `apply()` to calculate the mean and standard deviation for scores for each event.
+```{r}
+## apply mean to the decath
+apply(decath, 2, mean)
+
+## apply standard deviation to the decath
+apply(decath, 2, sd)
+```
+
+
+3. Use `cov()` and `cor()` to calculate sample covariance and correlation matrices for the
+decath data. Round the correlation matrix to two decimal places and discuss any
+pairwise correlations that have absolute value larger than 0.5. When I say to discuss
+them, I mean you should look at the two events and discuss why it does or does not
+make sense that they would be strongly positively or negatively related.
+```{r}
+## covariance of each element of decath
+round(cov(decath), 2)
+## The outcome is symmetric, and it shows that the variable of these positive numbers show the same holds for the lesser values, which the variables tend to show similar behavior. If the variables tend to show opposite behavior, there's the negative number. 
+
+## correlation of each element of decath
+round(cor(decath), 2)
+## the outcome is also symmetric, and the same variable has a 1 on the line. The positive numbers of correlation shows that when plotting these variables, there will be a slope toward upper right; and if it's a negative number, there will be a slope toward lower right.  
+```
+
+4. Install package *corrplot*. Then, research and use function `corrplot()` to visualize the
+correlation matrix with ordering based on hierarchical clustering (i.e., with argument
+order = "hclust"). Describe any groupings of events and discuss why you think those
+events are intercorrelated. Does it make sense or not and why?
+```{r}
+library(corrplot)
+corrplot(cor(decath), is.corr = FALSE, method = "color", 
+         order = "hclust", hclust.method = "ward.D2")
+## So as it appears, each variable is correlated with itself. And it looks like X100 is related to X110, X400, X400 is related to X1500, poid is related to jave, disq is related to poid. The reason why I think this is because it has a darker color, which by all means they tends to close to 1, which describes that they are related.
+```
+
+5. Use base R to create the following four plots.
+  (a) scatterplot of discus(disq) vs shot put(poid)
+  (b) scatterplot of shot put(poid) vs javelin(jave)
+  (c) scatterplot of discus(disq) vs javelin(jave)
+  (d) histogram of shot put scores(poid)
+```{r}
+plot(decath$disq, decath$poid, 
+     xlab = "discus", ylab = "shot out")
+plot(decath$poid, decath$jave, 
+     xlab = "shot put", ylab = "javelin")
+plot(decath$disq, decath$jave, 
+     xlab = "discus", ylab = "javelin")
+hist(decath$poid, xlab = "shot put", main = "Histogram of shot put")
+``` 
+
+6. Use `mfrow` or `mfcol` to create a two-by-two plotting array and then plot all four of the
+above plots in one window.
+```{r}
+par(mfrow = c(2, 2))
+plot(decath$disq, decath$poid, 
+     xlab = "discus", ylab = "shot out")
+plot(decath$poid, decath$jave, 
+     xlab = "shot put", ylab = "javelin")
+plot(decath$disq, decath$jave, 
+     xlab = "discus", ylab = "javelin")
+hist(decath$poid, xlab = "shot put", main = "Histogram of shot put")
+```
+
+7. Use function `ggMarginal` in package *ggExtra* to create a scatterplot of discus(disq) vs shot
+put(poid) with marginal density curves.
+```{r}
+library(ggExtra)
+scatter <- decath %>% 
+  ggplot(aes(x = disq, y = poid)) + 
+  geom_point(aes(color = disq)) + 
+  xlab("discus") + 
+  ylab("shot put") 
+mar <- ggMarginal(scatter, groupColour = FALSE)
+mar
+```
+
+## Part 2 MORE ON DATA TRANSFORMATIONS
+1. Import or load the acupuncture data we used last week and, once again, call it `acu`.
+```{r}
+acu <- read.csv("acupuncture.csv")
+```
+
+2. Create a new version of the data called `acu2` that are sorted by treatment group, sex,
+and age, in that order, so that the group variable has all 0s first and all 1s next, the sex
+variable is sorted 0/1 within levels of the group variable, and age is sorted last within
+combinations of the two categorical variables.
+```{r}
+acu2 <- acu %>% 
+  arrange(group, sex, age)
+acu2
+```
+
+3. Create a subset of the original data called `acu3` that only includes participants who
+were in the acupuncture group and were over 30 years of age.
+```{r}
+acu3 <- acu %>% 
+  filter(age > 30)
+acu3
+```
+
+4. Create a subset of the original data called `acu4` that only includes participants who
+had baseline severity at or above the 40th percentile of baseline severity scores.
+```{r}
+acu4 <- acu %>% 
+  filter(pk1 > ntile(pk1), n = 0.4)
+```
+
+5. Use `which()` to note which rows of the original data correspond with participants that
+are female and 40 years of age or older.
+```{r}
+
+```
