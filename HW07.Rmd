@@ -12,20 +12,42 @@ library(tidyverse)
 ```
 
 1. Rename the data set `dat1`.
-
+```{r}
+data("C11E19")
+dat1 <- C11E19
+```
 
 2. Each row of `dat1` represents data from a different participant. Add a participant `ID`
 number column to the data set and call it `ID`.
-
+```{r}
+dat1 <- dat1 %>% 
+  mutate(ID = row_number(), .before = Face)
+dat1
+```
 
 3. Create `dat1_long` by pivoting `dat1` from wide to long. When you pivot, name the
 new column that will hold the categorical values (Face, Circle, Newspaper, and White)
 `target` and name the new column that will hold the numeric outcome data `gaze_time`.
-
+```{r}
+dat1_long <- dat1 %>% 
+  pivot_longer(cols = Face : White, 
+               names_to = "target", 
+               values_to = "gaze_time")
+dat1_long
+```
 
 4. Use `summarize()` and `group_by()` with `dat1_long` to find the sample mean for each
 child for each target (Face, Circle, Newspaper, and White)
-
+```{r}
+dat1_long %>% 
+  group_by(target) %>% 
+  summarize(mean(gaze_time))
+```
 
 5. Use `ggplot()` with `dat_long` to create a conditional boxplot that has separate boxplots
 of gaze time for each target (Face, Circle, Newspaper, and White)
+```{r}
+dat1_long %>% 
+  ggplot(aes(x = target, y = gaze_time)) + 
+  geom_boxplot()
+```
