@@ -135,12 +135,17 @@ acu3
 4. Create a subset of the original data called `acu4` that only includes participants who
 had baseline severity at or above the 40th percentile of baseline severity scores.
 ```{r}
+# acu4 <- acu %>% 
+#   filter(ntile(pk1, n = 5) > 2)
 acu4 <- acu %>% 
-  filter(pk1 > ntile(pk1), n = 0.4)
+  filter(pk1 > quantile(acu$pk1, probs = .4))
+acu4
 ```
 
 5. Use `which()` to note which rows of the original data correspond with participants that
 are female and 40 years of age or older.
 ```{r}
-
+## female is not "female", female = 1
+rows <- acu[which(acu$sex == 1 & acu$age >= 40), ]
+rows
 ```
