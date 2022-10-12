@@ -1,0 +1,31 @@
+---
+title: "HW07"
+author: "Shijie An"
+date: '2022-10-12'
+output: html_document
+---
+
+```{r setup}
+## have to install packages for "AMCP"
+library(AMCP)
+library(tidyverse)
+```
+
+1. Rename the data set `dat1`.
+
+
+2. Each row of `dat1` represents data from a different participant. Add a participant `ID`
+number column to the data set and call it `ID`.
+
+
+3. Create `dat1_long` by pivoting `dat1` from wide to long. When you pivot, name the
+new column that will hold the categorical values (Face, Circle, Newspaper, and White)
+`target` and name the new column that will hold the numeric outcome data `gaze_time`.
+
+
+4. Use `summarize()` and `group_by()` with `dat1_long` to find the sample mean for each
+child for each target (Face, Circle, Newspaper, and White)
+
+
+5. Use `ggplot()` with `dat_long` to create a conditional boxplot that has separate boxplots
+of gaze time for each target (Face, Circle, Newspaper, and White)
