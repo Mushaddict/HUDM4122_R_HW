@@ -28,6 +28,8 @@ decath <- read.csv("decath.csv")
 is_tibble(decath)
 ## The deacth is not tibble, it returns false when I use is_tibble(), because decath is a data frame. 
 print(decath)
+# print(tbl_df(decath), n = 33)
+# print(tbl_df(decath), n = 33)
 ```
 
 
