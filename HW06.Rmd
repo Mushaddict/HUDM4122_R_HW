@@ -44,18 +44,20 @@ apply(decath, 2, sd)
 
 
 3. Use `cov()` and `cor()` to calculate sample covariance and correlation matrices for the
-decath data. Round the correlation matrix to two decimal places and discuss any
-pairwise correlations that have absolute value larger than 0.5. When I say to discuss
+decath data. *Round* the correlation matrix to *two decimal* places and discuss any
+pairwise correlations that have *absolute value* larger than 0.5. When I say to discuss
 them, I mean you should look at the two events and discuss why it does or does not
 make sense that they would be strongly positively or negatively related.
 ```{r}
 ## covariance of each element of decath
 round(cov(decath), 2)
 ## The outcome is symmetric, and it shows that the variable of these positive numbers show the same holds for the lesser values, which the variables tend to show similar behavior. If the variables tend to show opposite behavior, there's the negative number. 
+## It shows that long and X100, X400 and long, perc and X110, have a strong negative covariances. And X400 and X10, X110 and X100, X110 and X400, disq and poid, jave and poid, X1500 and X400 have a strong positive covariance. 
 
 ## correlation of each element of decath
 round(cor(decath), 2)
-## the outcome is also symmetric, and the same variable has a 1 on the line. The positive numbers of correlation shows that when plotting these variables, there will be a slope toward upper right; and if it's a negative number, there will be a slope toward lower right.  
+## the outcome is also symmetric, and the same variable has a 1 on the line. The positive numbers of correlation shows that when plotting these variables, there will be a slope toward upper right; and if it's a negative number, there will be a slope toward lower right. 
+## It shows disq and poid, disq and X400, jave and poid, jave and X400, jave and disq, X1500 and X100, X1500 and poid, X1500 and X400, X1500 and X110, X1500 and disq, X1500 and jave have a positive correlation. And X1500 and long has a negative correlation. 
 ```
 
 4. Install package *corrplot*. Then, research and use function `corrplot()` to visualize the
