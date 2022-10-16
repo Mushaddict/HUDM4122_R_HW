@@ -445,7 +445,8 @@ print(decath)</code></pre>
 ## 31 11.43 6.22 13.98 1.91 51.25 15.88 46.18  4.6 57.84 294.99
 ## 32 11.47 6.43 12.33 1.94 50.30 15.00 38.72  4.0 57.26 293.72
 ## 33 11.57 7.19 10.27 1.91 50.71 16.20 34.36  4.1 54.94 269.98</code></pre>
-<pre class="r"><code># print(tbl_df(decath), n = 33)</code></pre>
+<pre class="r"><code># print(tbl_df(decath), n = 33)
+# print(tbl_df(decath), n = 33)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Use <code>apply()</code> to calculate the mean and standard
 deviation for scores for each event.</li>
@@ -464,12 +465,12 @@ apply(decath, 2, sd)</code></pre>
 ##  0.3344206  5.4959984 13.6570975</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Use <code>cov()</code> and <code>cor()</code> to calculate sample
-covariance and correlation matrices for the decath data. Round the
-correlation matrix to two decimal places and discuss any pairwise
-correlations that have absolute value larger than 0.5. When I say to
-discuss them, I mean you should look at the two events and discuss why
-it does or does not make sense that they would be strongly positively or
-negatively related.</li>
+covariance and correlation matrices for the decath data. <em>Round</em>
+the correlation matrix to <em>two decimal</em> places and discuss any
+pairwise correlations that have <em>absolute value</em> larger than 0.5.
+When I say to discuss them, I mean you should look at the two events and
+discuss why it does or does not make sense that they would be strongly
+positively or negatively related.</li>
 </ol>
 <pre class="r"><code>## covariance of each element of decath
 round(cov(decath), 2)</code></pre>
@@ -485,6 +486,7 @@ round(cov(decath), 2)</code></pre>
 ## jave  -0.09  0.30  4.38  0.06  0.71 -0.17  9.05  0.50 30.21   7.23
 ## X1500  0.87 -1.64  4.89 -0.15  8.58  0.99 20.43 -0.14  7.23 186.52</code></pre>
 <pre class="r"><code>## The outcome is symmetric, and it shows that the variable of these positive numbers show the same holds for the lesser values, which the variables tend to show similar behavior. If the variables tend to show opposite behavior, there&#39;s the negative number. 
+## It shows that long and X100, X400 and long, perc and X110, have a strong negative covariances. And X400 and X10, X110 and X100, X110 and X400, disq and poid, jave and poid, X1500 and X400 have a strong positive covariance. 
 
 ## correlation of each element of decath
 round(cor(decath), 2)</code></pre>
@@ -499,7 +501,8 @@ round(cor(decath), 2)</code></pre>
 ## perc  -0.39  0.35  0.48  0.21 -0.32 -0.52  0.34  1.00  0.27 -0.03
 ## jave  -0.06  0.18  0.60  0.12  0.12 -0.06  0.44  0.27  1.00  0.10
 ## X1500  0.26 -0.40  0.27 -0.11  0.59  0.14  0.40 -0.03  0.10  1.00</code></pre>
-<pre class="r"><code>## the outcome is also symmetric, and the same variable has a 1 on the line. The positive numbers of correlation shows that when plotting these variables, there will be a slope toward upper right; and if it&#39;s a negative number, there will be a slope toward lower right.  </code></pre>
+<pre class="r"><code>## the outcome is also symmetric, and the same variable has a 1 on the line. The positive numbers of correlation shows that when plotting these variables, there will be a slope toward upper right; and if it&#39;s a negative number, there will be a slope toward lower right. 
+## It shows disq and poid, disq and X400, jave and poid, jave and X400, jave and disq, X1500 and X100, X1500 and poid, X1500 and X400, X1500 and X110, X1500 and disq, X1500 and jave have a positive correlation. And X1500 and long has a negative correlation. </code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Install package <em>corrplot</em>. Then, research and use function
 <code>corrplot()</code> to visualize the correlation matrix with
