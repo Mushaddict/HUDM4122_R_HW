@@ -1,0 +1,78 @@
+---
+title: "HW08"
+author: "Shijie An"
+date: '2022-10-26'
+output: html_document
+---
+
+```{r setup}
+library(tidyverse)
+aiw <- read_file(file =  "https://www.gutenberg.org/files/11/11-0.txt")
+```
+
+1. How many characters does *aiw* contain? Is it a vector? What is the length of the vector?
+```{r}
+nchar(aiw)
+is.vector(nchar(aiw))
+length(nchar(aiw))
+sprintf("There are %d characters in aiw. ", nchar(aiw))
+print("nchar(aiw) is a vector")
+sprintf("The vector has a length of %d", length(nchar(aiw)))
+```
+
+
+2. Examine the first 3000 characters of the text of the book with `str_sub()`.
+```{r}
+str_sub(aiw, end = 3000)
+# nchar(str_sub(aiw, start = 1, end = 3000))
+```
+
+3. Note that when imported, the text file brought along some formatting in the way of
+`"\n"` and `"\r"` strings. Find and replace these white space using `str_replace_all()` and
+save the output as *aiw2*.
+```{r}
+aiw2 <- 
+```
+
+4. Project Gutenberg has added some text at the beginning and appended some legal
+boilerplate text to the end. Find the true beginning and ending of the text and save only the
+book text (i.e., drop off the boilerplate). Save this as *aiw2*.
+```{r}
+
+```
+
+5. Note that *aiw2* is a single long character string. We would like to separate the words
+so that each is it’s own element of a character vector. So, once Task 2 is accomplished, use
+str_split() to do that and rename the result to *aiw3*. This will produce output in a list,
+but we want a vector, so use `unlist()` on *aiw3* to turn it into a long character vector; again,
+save the output as *aiw3* here.
+```{r}
+
+```
+
+6. What proportion of words in the book contain at least one uppercase letter?
+```{r}
+
+```
+
+7. What proportion of words in the book use some form of punctuation?
+```{r}
+
+```
+
+8. Alice in Wonderland is one of the most influential books for children written over the
+past 200 years. As an example, ever wonder why Nintendo’s Super Mario grows when he eats
+a mushroom? Although Shigeru Miyamoto (Mario’s creator) has more recently denied a direct
+influence, he has spoken in the past about how he was thinking about Alice in Wonderland
+while creating the video game. How many times does the word "mushroom" occur in the
+text, regardless of letter case? Locate each instance of the word and print out enough of the
+surrounding text to display the context for each instance.
+```{r}
+
+```
+
+9. Use a function we have discussed to replace all instances of the word ‘mushroom’
+with the word *‘apple’*.
+```{r}
+
+```
