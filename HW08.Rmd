@@ -31,14 +31,22 @@ str_sub(aiw, end = 3000)
 `"\n"` and `"\r"` strings. Find and replace these white space using `str_replace_all()` and
 save the output as *aiw2*.
 ```{r}
-aiw2 <- 
+# aiw2 <- str_replace_all(aiw, c("\r", "\n"), "-") 不知道为啥不行
+aiw2 <- str_replace_all(aiw, c("\r" = "-", "\n" = "-"))
+
 ```
 
 4. Project Gutenberg has added some text at the beginning and appended some legal
 boilerplate text to the end. Find the true beginning and ending of the text and save only the
 book text (i.e., drop off the boilerplate). Save this as *aiw2*.
 ```{r}
-
+## start by :[Illustration]
+## end by : THE END
+str_detect(aiw, "[Illustration]")
+str_detect(aiw, "THE END")
+# grep("[Illustration]", aiw)
+aiw_test <- str_split(aiw, c("Illustration]", "THE END"), ignore.)
+aiw_test
 ```
 
 5. Note that *aiw2* is a single long character string. We would like to separate the words
