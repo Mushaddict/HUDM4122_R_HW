@@ -5,6 +5,7 @@ date: '2022-10-26'
 output: html_document
 ---
 
+Check this URL: https://sicss.io/2018/materials/day3-text-analysis/basic-text-analysis/rmarkdown/Basic_Text_Analysis_in_R.html
 ```{r setup}
 library(tidyverse)
 aiw <- read_file(file =  "https://www.gutenberg.org/files/11/11-0.txt")
@@ -32,8 +33,10 @@ str_sub(aiw, end = 3000)
 save the output as *aiw2*.
 ```{r}
 # aiw2 <- str_replace_all(aiw, c("\r", "\n"), "-") 不知道为啥不行
-aiw2 <- str_replace_all(aiw, c("\r" = "-", "\n" = "-"))
-
+## better way: 
+## aiw2 <- gsub("\r|\n", "",aiw)
+aiw2 <- str_replace_all(aiw, c("\r" = "", "\n" = ""))
+aiw2
 ```
 
 4. Project Gutenberg has added some text at the beginning and appended some legal
