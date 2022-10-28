@@ -36,7 +36,6 @@ save the output as *aiw2*.
 ## better way: 
 ## aiw2 <- gsub("\r|\n", "",aiw)
 aiw2 <- str_replace_all(aiw, c("\r" = "", "\n" = ""))
-aiw2
 ```
 
 4. Project Gutenberg has added some text at the beginning and appended some legal
@@ -50,7 +49,7 @@ book text (i.e., drop off the boilerplate). Save this as *aiw2*.
 start <- str_locate(aiw, "Illustration]")
 end <- str_locate(aiw, "THE END")
 aiw2 <- str_sub(aiw, start[2] + 1, end[2])
-aiw2
+
 ```
 
 5. Note that *aiw2* is a single long character string. We would like to separate the words
@@ -64,12 +63,14 @@ aiw3 <- unlist(str_split(aiw2, " "))
 
 6. What proportion of words in the book contain at least one uppercase letter?
 ```{r}
-
+portion <- sum(str_detect(aiw3, "[[:upper:]]")) / length(aiw3)
+portion
 ```
 
 7. What proportion of words in the book use some form of punctuation?
 ```{r}
-
+portion <- sum(str_detect(aiw3, "[:punct:]$")) / length(aiw3)
+portion
 ```
 
 8. Alice in Wonderland is one of the most influential books for children written over the
@@ -80,11 +81,40 @@ while creating the video game. How many times does the word "mushroom" occur in 
 text, regardless of letter case? Locate each instance of the word and print out enough of the
 surrounding text to display the context for each instance.
 ```{r}
+print_mush_surr <- function(index) {
+  i = index                                # i pointer to index
+  vec <- c(i)                              # put i in the vector
+  while(!str_detect(aiw3[i], "\r\n\r")) {  # find the last word of the paragraph
+    i = i + 1                              # i++
+    vec <- cbind(vec, i)                   # append i in the vector
+  }
+  
+  i = index                                # i pointer again
+  while(!str_detect(aiw3[i], "\r\n\r")) {  # find the last word of the paragraph
+    i = i - 1                              # i--
+    vec <- cbind(i, vec)                   # append i in front of the vector
+  }
+  cat(paste(aiw3[vec]))                    # print out
+  cat("\n")
+}
+#############################################################################
+#######################   function above   ##################################
+#############################################################################
+
+
+have <- which(str_detect(aiw3, "mushroom"))
+sprintf("There are %s mushrooms in the book", length(have))
+for(i in have) {
+  print_mush_surr(i)
+}
+
+
 
 ```
 
-9. Use a function we have discussed to replace all instances of the word ‘mushroom’
+9. Use a function we have discussed to replace all instances of the word *‘mushroom’*
 with the word *‘apple’*.
 ```{r}
-
+change <- str_replace_all(aiw, "mushroom", "apple")
+str_view(change, "apple")
 ```
