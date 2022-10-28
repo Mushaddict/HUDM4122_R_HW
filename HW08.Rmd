@@ -81,6 +81,7 @@ while creating the video game. How many times does the word "mushroom" occur in 
 text, regardless of letter case? Locate each instance of the word and print out enough of the
 surrounding text to display the context for each instance.
 ```{r}
+
 print_mush_surr <- function(index) {
   i = index                                # i pointer to index
   vec <- c(i)                              # put i in the vector
