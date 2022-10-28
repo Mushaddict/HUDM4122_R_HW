@@ -45,11 +45,12 @@ book text (i.e., drop off the boilerplate). Save this as *aiw2*.
 ```{r}
 ## start by :[Illustration]
 ## end by : THE END
-str_detect(aiw, "[Illustration]")
-str_detect(aiw, "THE END")
-# grep("[Illustration]", aiw)
-aiw_test <- str_split(aiw, c("Illustration]", "THE END"), ignore.)
-aiw_test
+# str_detect(aiw, "[Illustration]")
+# str_detect(aiw, "THE END")
+start <- str_locate(aiw, "Illustration]")
+end <- str_locate(aiw, "THE END")
+aiw2 <- str_sub(aiw, start[2] + 1, end[2])
+aiw2
 ```
 
 5. Note that *aiw2* is a single long character string. We would like to separate the words
@@ -58,7 +59,7 @@ str_split() to do that and rename the result to *aiw3*. This will produce output
 but we want a vector, so use `unlist()` on *aiw3* to turn it into a long character vector; again,
 save the output as *aiw3* here.
 ```{r}
-
+aiw3 <- unlist(str_split(aiw2, " "))
 ```
 
 6. What proportion of words in the book contain at least one uppercase letter?
