@@ -1,0 +1,12 @@
+---
+title: "Final"
+author: "Shijie An"
+date: '2022-11-02'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+data comes from [here](https://catalog.data.gov/dataset/electric-vehicle-population-data)
