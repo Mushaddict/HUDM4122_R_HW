@@ -1,0 +1,30 @@
+---
+title: "Final"
+author: "Shijie An"
+date: '2022-11-02'
+output: html_document
+---
+
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0269201
+```{r setup}
+library(ggplot2)
+library(tidyverse)
+```
+
+```{r}
+dep = read.csv("pone.0269201.s002.csv")
+
+## GPA is character, has value of "decline"
+dep <- dep[-which(dep$GPA == "decline"), ]
+dep$GPA <- as.numeric(dep$GPA)
+dep %>% ggplot(aes(x = GPA, fill = depression)) +
+  geom_density(alpha = 0.9) + 
+  scale_color_manual(c("red", "green", "blue"))
+```
+
+```{r}
+dep %>% ggplot(aes(x = GPA, fill = STEM.major.clean)) + 
+  geom_density(alpha = 0.5) +
+  scale_color_manual(c("red", "yellow"))
+```
+
