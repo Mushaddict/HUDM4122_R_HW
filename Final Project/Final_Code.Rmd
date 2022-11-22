@@ -14,6 +14,8 @@ library(tidyverse)
 ```{r}
 dep = read.csv("pone.0269201.s002.csv")
 
+prop.table(table(stat(dep$depression)))
+
 ## GPA is character, has value of "decline"
 dep <- dep[-which(dep$GPA == "decline"), ]
 dep$GPA <- as.numeric(dep$GPA)
@@ -27,4 +29,21 @@ dep %>% ggplot(aes(x = GPA, fill = STEM.major.clean)) +
   geom_density(alpha = 0.5) +
   scale_color_manual(c("red", "yellow"))
 ```
+分类
+```{r}
+depYes <- dep %>%
+  filter(depression != "decline")
+prop.table(table(stat(depYes$depression)))
+prop.table(table(stat(depYes$severity.depression.online)))
+depNo <- dep %>% 
+  filter(depression == "decline")
+## It can be seen that almost 13% students refuse the question. 
+## But among the other 87% students, 62% of them have experienced with depression.
+```
+
+
+
+
+
+
 

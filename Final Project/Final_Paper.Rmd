@@ -1,0 +1,42 @@
+---
+title: "How Different Type of Behavior Would Alleviate or Excerbate Students Depression"
+author: "Shijie An"
+date: "2022-11-22"
+output: html_document
+---
+
+# Literature Review
+Depression is the number one mental health concern among college students, but there is a lack of research exploring how online college science courses may exacerbate or lession their depression. In the paper 
+
+
+
+
+
+# Methods and Sample
+
+
+
+
+
+
+
+
+
+# Findings
+
+
+
+
+
+
+
+
+
+# Discussion
+
+
+
+
+
+
+
