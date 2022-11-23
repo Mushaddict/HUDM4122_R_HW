@@ -32,13 +32,14 @@ dep %>% ggplot(aes(x = GPA, fill = STEM.major.clean)) +
 分类
 ```{r}
 depYes <- dep %>%
-  filter(depression != "decline")
+  filter(depression == "yes")
 prop.table(table(stat(depYes$depression)))
 prop.table(table(stat(depYes$severity.depression.online)))
 depNo <- dep %>% 
-  filter(depression == "decline")
-## It can be seen that almost 13% students refuse the question. 
-## But among the other 87% students, 62% of them have experienced with depression.
+  filter(depression != "yes")
+
+write.csv(depYes, "depYes.csv")
+write.csv(depNo, "depNo.csv")
 ```
 
 
