@@ -97,20 +97,20 @@ Based on the graph of different categorical variable, it shows that the asian st
 The graph shows the race/gender/lgbtq statistical differences and percentage differences. 
 
 
-### Finding:2. The white students
-```{r}
+### Finding:2. The students who are white, who are women, who is in LGBTQ group seem to have significant statistical value to prove they will be depressed. 
+```{r eval = FALSE}
 set.seed(1234)
 regression <- dep %>% select(depression, race2, division, gender2, 
                              gen.stat2, lgbtq2, financially.stable2)
-# intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
-# train1 <- regression[intrain, ]
-# test1 <- regression[-intrain, ]
+intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
+train1 <- regression[intrain, ]
+test1 <- regression[-intrain, ]
 logistic <- train(depression ~ ., data = regression, method = "glm", 
                   preProcess = c("scale", "center"), 
                   family = binomial(link = "logit"))
 summary(logistic)
 ```
-
+Based on the logistic regression that we selected from gender, race, division, generation, lgbtq, financial status, it can be seen that the white students (2.46e-06), women students (5.29e-08), lgbtq students (2e-16) have a significant value which their p-value are all in between 0 and 0.001, which shows being depression is strongly related to these circumstances. 
 
 ### Finding:3. What scenario would alleviate students' depression? 
 
