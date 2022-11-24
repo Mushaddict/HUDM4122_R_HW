@@ -69,22 +69,31 @@ For GPA, the best way to visualize GPA is to use boxplot and separate it with st
 # Findings
 
 ### Finding:1. Is GPA/Race/Gender/LQBTQ/College Generation Status/Financial Status/STEM major/Year in College a greatest factor that affect students' depression? 
-```{r plots, warning = FALSE}
-dep %>% 
+```{r plots, warning = FALSE, echo = FALSE}
+count_race <- dep %>% ggplot(aes(x = race2, fill = depression)) + 
+  geom_bar(alpha = 0.3)
+perc_race <- dep %>% ggplot(aes(x = race2, fill = depression)) + 
+  geom_bar(alpha = 0.3, position = "fill")
+count_gender <- dep %>% ggplot(aes(x = gender2, fill = depression)) + 
+  geom_bar(alpha = 0.3)
+perc_gender <- dep %>% ggplot(aes(x = gender2, fill = depression)) + 
+  geom_bar(alpha = 0.3, position = "fill")
+count_lgbtq <- dep %>% ggplot(aes(x = lgbtq2, fill = depression)) + 
+  geom_bar(alpha = 0.3)
+perc_lgbtq <- dep %>% ggplot(aes(x = lgbtq2, fill = depression)) + 
+  geom_bar(alpha = 0.3, position = "fill")
+gpa <- dep %>% 
   ggplot(aes(x = depression, y = as.numeric(GPA))) + 
   geom_boxplot()
+ggarrange(count_race, perc_race, count_gender, perc_gender, count_lgbtq,
+          perc_lgbtq, gpa, ncol = 2, nrow = 4)
 
-var <- list("STEM.major.clean", "race2", "division", "gender2", 
-            "gen.stat2", "lgbtq2", "financially.stable2")
-for(i in var) {
-  count <- ggplot(data.frame(dep[, i]), aes(x = dep[, i], fill = dep$depression)) + 
-    geom_bar(alpha = 0.3) + xlab(i)
-  perc <- ggplot(data.frame(dep[, i]), aes(x = dep[, i], fill = dep$depression)) + 
-    geom_bar(alpha = 0.3, position = "fill") + xlab(i)
-  print(ggarrange(count, perc, labels = c("count", "perc"), ncol = 1, nrow = 2))
-}
 ```
-For GPA, it shows that students who are in depression seem to have a lower GPA than students who don't have a depression. 
+For GPA, it shows that students who are in depression seem to have a lower GPA than students who don't have a depression, but the different is very small so it can't tell if GPA is one of the greatest factor. 
+
+Based on the graph of different categorical variable, it shows that the asian student seems to have less depression than other races (57.94%), students who have confusion about their gender identities seem to be easier in depression (73.08%), and students who are LGBTQ groups tend to be easier in depression (79.78%). 
+
+Thus, it can be concluded that students who are LGBTQ groups is the greatest factor that affect students' depression. 
 
 
 ### Finding:2. Which kind of students would tend to be depressed? 
