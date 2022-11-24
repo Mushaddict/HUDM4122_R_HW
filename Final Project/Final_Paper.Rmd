@@ -8,6 +8,7 @@ output: pdf_document
 library(tidyverse)
 library(ggplot2)
 library(ggpubr)
+library(caret)
 ```
 # Literature Review
 Depression is the number one mental health concern among college students, but there is a lack of research exploring how online college science courses may exacerbate or lesson their depression. In the paper, there are 41 variables, which only 1 of them is continuous variable, which is GPA, and other 40 of those variables are categorical variables, which contains whether students are depression, how severity are their depression is, what are the cases that they have to face that will alleviate or exacerbate their depression, are there STEM majors or not, what division/gender are they, are they the first generation college students/LGBTQ, what are their financial status, are they going to keep depression, and what aspect of online course would affect students' depression.
@@ -97,6 +98,18 @@ Thus, it can be concluded that students who are LGBTQ groups is the greatest fac
 
 
 ### Finding:2. Which kind of students would tend to be depressed? 
+```{r}
+set.seed(1234)
+regression <- dep %>% select(depression, race2, division, gender2, 
+                             gen.stat2, lgbtq2, financially.stable2)
+intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
+train1 <- regression[intrain, ]
+test1 <- regression[-intrain, ]
+logistic <- train(depression ~ ., data = train1, method = "glm", 
+                  preProcess = c("scale", "center"), 
+                  family = binomial(link = "logit"))
+summary(logistic)
+```
 
 
 ### Finding:3. What scenario would alleviate students' depression? 
