@@ -6,30 +6,44 @@ output: html_document
 ---
 
 # Literature Review
-Depression is the number one mental health concern among college students, but there is a lack of research exploring how online college science courses may exacerbate or lession their depression. In the paper, there are 41 variables, which only 1 of them is continuous variable, which is GPA, and other 40 of those variables are categorical variables, which contains whether students are depression, how severity are their depression is, what are the cases that they have to face that will alleviate or excerbate their depression, are there STEM majors or not, what division/gender are they, are they the first generation college students/LGBTQ, what are their financial status, are they going to keep depression, and what aspect of online course would affect students' depression.
+Depression is the number one mental health concern among college students, but there is a lack of research exploring how online college science courses may exacerbate or lesson their depression. In the paper, there are 41 variables, which only 1 of them is continuous variable, which is GPA, and other 40 of those variables are categorical variables, which contains whether students are depression, how severity are their depression is, what are the cases that they have to face that will alleviate or exacerbate their depression, are there STEM majors or not, what division/gender are they, are they the first generation college students/LGBTQ, what are their financial status, are they going to keep depression, and what aspect of online course would affect students' depression.
 
 ## Current Study
 
-Some researches have already described that students would alleviate or excerbate their depreesion due to some cases that they have experienced in online class. But different stduents with different background would behave different symptoms, whether they would keep depressed or they will no longer depressed. We cannot tell if their background such as race or ethnity or gender would affect their opinions to let them depressed. To address these differences, we would have some questions that need to investigate to find out the solution for students that take online classes. 
+Some researches have already described that students would alleviate or exacerbate their depreesion due to some cases that they have experienced in online class. But different students with different background would behave different symptoms, whether they would keep depressed or they will no longer depressed. We cannot tell if their background such as race or ethnicity or gender would affect their opinions to let them depressed. To address these differences, we would have some questions that need to investigate to find out the solution for students that take online classes. 
 
 1. Is GPA a greatest factor that affect students' depression? 
 2. Which kind of students would tend to be depressed? 
-3. What scenerio would alleviate students' depression? 
-4. What scenerio would excerbate students' depression? 
+3. What scenario would alleviate students' depression? 
+4. What scenario would exacerbate students' depression? 
 
 
 
 # Methods and Sample
 
 ## Samples
-First, in the dataset, since it seems that stduents who have no depression or refuses to answer the questions all seem to have no experiences from cases of depression, we would like to change the variable of `depression` to answers only contains "yes" and "no". 
+First, in the data set, since it seems that students who have no depression or refuses to answer the questions all seem to have no experiences from cases of depression, we would like to change the variable of `depression` to answers only contains "yes" and "no". 
 ```{r}
 dep <- read.csv("pone.0269201.s002.csv")
 dep$depression <- ifelse(dep$depression == "yes", "yes", "no")
 ```
 
+Since there are many missing values because there are some students who don't have depression or refuse to answer the question, for cases that that students may experiences, I would like to put the missing value NA to -1 so the data set contains 1, 0, -1. And for other categorical data, I would like to put the missing value NA to "unknown". 
+```{r}
+missingCase <- grep("idep|ddep", colnames(dep))
+dep[, missingCol][is.na(dep[, missingCol])] <- -1
+dep[, -missingCol][is.na(dep[, -missingCol])] <- "Unknown"
+```
 
-
+|      |      |      |      |
+| ---- | ---- | ---- | ---- |
+|      |      |      |      |
+|      |      |      |      |
+|      |      |      |      |
+|      |      |      |      |
+|      |      |      |      |
+|      |      |      |      |
+|      |      |      |      |
 
 
 
