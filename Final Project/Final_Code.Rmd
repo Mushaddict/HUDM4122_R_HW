@@ -66,7 +66,27 @@ for(i in var) {
 }
 ```
 
+挑了3个显著的，race, gender, lgbtq, 最后加上一个gpa的boxplot
+```{r plots, warning = FALSE, echo = FALSE}
+count_race <- dep %>% ggplot(aes(x = race2, fill = depression)) + 
+  geom_bar(alpha = 0.3)
+perc_race <- dep %>% ggplot(aes(x = race2, fill = depression)) + 
+  geom_bar(alpha = 0.3, position = "fill")
+count_gender <- dep %>% ggplot(aes(x = gender2, fill = depression)) + 
+  geom_bar(alpha = 0.3)
+perc_gender <- dep %>% ggplot(aes(x = gender2, fill = depression)) + 
+  geom_bar(alpha = 0.3, position = "fill")
+count_lgbtq <- dep %>% ggplot(aes(x = lgbtq2, fill = depression)) + 
+  geom_bar(alpha = 0.3)
+perc_lgbtq <- dep %>% ggplot(aes(x = lgbtq2, fill = depression)) + 
+  geom_bar(alpha = 0.3, position = "fill")
+gpa <- dep %>% 
+  ggplot(aes(x = depression, y = as.numeric(GPA))) + 
+  geom_boxplot()
+ggarrange(count_race, perc_race, count_gender, perc_gender, count_lgbtq,
+          perc_lgbtq, gpa, ncol = 2, nrow = 4)
 
+```
 
 
 
