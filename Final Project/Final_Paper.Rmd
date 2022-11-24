@@ -69,7 +69,7 @@ For GPA, the best way to visualize GPA is to use boxplot and separate it with st
 
 # Findings
 
-### Finding:1. Is GPA/Race/Gender/LQBTQ/College Generation Status/Financial Status/STEM major/Year in College a greatest factor that affect students' depression? 
+### Finding:1. LGBTQ groups is the greatest factor that affect students' depression, gender identitiy is the second greatest factor that affect students' depression. 
 ```{r plots, warning = FALSE, echo = FALSE}
 count_race <- dep %>% ggplot(aes(x = race2, fill = depression)) + 
   geom_bar(alpha = 0.3)
@@ -94,18 +94,18 @@ For GPA, it shows that students who are in depression seem to have a lower GPA t
 
 Based on the graph of different categorical variable, it shows that the asian student seems to have less depression than other races (57.94%), students who have confusion about their gender identities seem to be easier in depression (73.08%), and students who are LGBTQ groups tend to be easier in depression (79.78%). 
 
-Thus, it can be concluded that students who are LGBTQ groups is the greatest factor that affect students' depression. 
+The graph shows the race/gender/lgbtq statistical differences and percentage differences. 
 
 
-### Finding:2. Which kind of students would tend to be depressed? 
+### Finding:2. The white students
 ```{r}
 set.seed(1234)
 regression <- dep %>% select(depression, race2, division, gender2, 
                              gen.stat2, lgbtq2, financially.stable2)
-intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
-train1 <- regression[intrain, ]
-test1 <- regression[-intrain, ]
-logistic <- train(depression ~ ., data = train1, method = "glm", 
+# intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
+# train1 <- regression[intrain, ]
+# test1 <- regression[-intrain, ]
+logistic <- train(depression ~ ., data = regression, method = "glm", 
                   preProcess = c("scale", "center"), 
                   family = binomial(link = "logit"))
 summary(logistic)
