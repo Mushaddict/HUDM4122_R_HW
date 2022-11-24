@@ -9,6 +9,7 @@ https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0269201
 ```{r setup}
 library(ggplot2)
 library(tidyverse)
+library(ggpubr)
 ```
 
 ```{r}
@@ -31,18 +32,39 @@ dep %>% ggplot(aes(x = GPA, fill = STEM.major.clean)) +
 ```
 分类
 ```{r}
-depYes <- dep %>%
-  filter(depression == "yes")
-prop.table(table(stat(depYes$depression)))
-prop.table(table(stat(depYes$severity.depression.online)))
-depNo <- dep %>% 
-  filter(depression != "yes")
-
-write.csv(depYes, "depYes.csv")
-write.csv(depNo, "depNo.csv")
+dep <- read.csv("pone.0269201.s002.csv")
+dep$depression <- ifelse(dep$depression == "yes", "yes", "no")
+dep <- dep %>% mutate(GPA = as.numeric(GPA)) ## 这里不知道为啥没用
 ```
 
+```{r}
+missingCol <- grep("idep|ddep", colnames(dep))
+dep[, missingCol][is.na(dep[, missingCol])] <- -1
+dep[, -missingCol][is.na(dep[, -missingCol])] <- "Unknown"
+```
 
+```{r eval = FALSE}
+for(i in 34:41) {
+  print(stat(table(dep[i])))
+  print(prop.table(stat(table(dep[i]))))
+}
+```
+
+```{r plots, warning = FALSE}
+dep %>% 
+  ggplot(aes(x = depression, y = as.numeric(GPA))) + 
+  geom_boxplot()
+
+var <- list("STEM.major.clean", "race2", "division", "gender2", 
+            "gen.stat2", "lgbtq2", "financially.stable2")
+for(i in var) {
+  count <- ggplot(data.frame(dep[, i]), aes(x = dep[, i], fill = dep$depression)) + 
+    geom_bar(alpha = 0.3) + xlab(i)
+  perc <- ggplot(data.frame(dep[, i]), aes(x = dep[, i], fill = dep$depression)) + 
+    geom_bar(alpha = 0.3, position = "fill") + xlab(i)
+  print(ggarrange(count, perc, labels = c("count", "perc"), ncol = 1, nrow = 2))
+}
+```
 
 
 
