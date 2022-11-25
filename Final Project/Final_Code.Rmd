@@ -90,28 +90,35 @@ ggarrange(count_race, perc_race, count_gender, perc_gender, count_lgbtq,
 
 logistic regression
 ```{r}
-set.seed(1234)
-regression <- dep %>% select(depression, race2, division, gender2, 
-                             gen.stat2, lgbtq2, financially.stable2)
-intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
-train1 <- regression[intrain, ]
-test1 <- regression[-intrain, ]
-
-
-logisModel <- train(depression ~ ., data = train1, method = "glm", 
-                  preProcess = c("scale", "center"), 
-                  family = binomial(link = "logit"))
-logic_pred <- predict(logisModel, newdata = test1)
-l_cm <- confusionMatrix(logic_pred, factor(test1$depression))
-l_cm$overall
+# set.seed(1234)
+# regression <- dep %>% select(depression, race2, division, gender2, 
+#                              gen.stat2, lgbtq2, financially.stable2)
+# intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
+# train1 <- regression[intrain, ]
+# test1 <- regression[-intrain, ]
+# 
+# 
+# logisModel <- train(depression ~ ., data = train1, method = "glm", 
+#                   preProcess = c("scale", "center"), 
+#                   family = binomial(link = "logit"))
+# logic_pred <- predict(logisModel, newdata = test1)
+# l_cm <- confusionMatrix(logic_pred, factor(test1$depression))
+# l_cm$overall
 
 ```
 naive bayes
 ```{r}
-nb_fit <- train(depression ~ ., data = train1, method = "nb", 
-                preProcess = c("scale", "center"))
-nb_pred <- predict(nb_fit, newdata = test1)
-nb_cm <- confusionMatrix(nb_pred, factor(test1$depression))
-nb_cm$overall
+# nb_fit <- train(depression ~ ., data = train1, method = "nb", 
+#                 preProcess = c("scale", "center"))
+# nb_pred <- predict(nb_fit, newdata = test1)
+# nb_cm <- confusionMatrix(nb_pred, factor(test1$depression))
+# nb_cm$overall
 
+```
+
+
+3. 选depression yes
+```{r}
+dep_s <- dep %>% filter(depression2 == "yes") 
+prop.table(table(dep_s[, 4:33]))
 ```
