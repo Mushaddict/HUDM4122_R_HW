@@ -110,25 +110,34 @@ summary(logistic)
 Based on the logistic regression that we selected from gender, race, division, generation, lgbtq, financial status, it can be seen that the white students (2.46e-06), women students (5.29e-08), lgbtq students (2e-16) have a significant value which their p-value are all in between 0 and 0.001, which shows being depression is strongly related to these circumstances. 
 
 ### Finding:3. What scenario would alleviate students' depression? 
-
- 
- 
- 
- 
-
-### Finding:4. What scenario would exacerbate students' depression? 
 ```{r}
-dep_s <- dep %>% filter(depression2 == "yes") %>% select(4:33)
-namelist <- colnames(dep_s)
+dep_no <- dep %>% filter(depression2 == "yes") %>% select(contains("ddep"))
+namelist <- colnames(dep_no)
 for(i in namelist) {
-  print(table(dep_s[i]))
-  print(prop.table(table(dep_s[i])))
+  print(table(dep_no[i]))
+  print(prop.table(table(dep_no[i])))
   print("-----------------------------------")
 }
 
 ```
 
+ ![alleviate](D:\CU TC\hudm 5026 intro to R\HUDM5026_R_HW\Final Project\alleviate.png)
 
+ 
+
+### Finding:4. What scenario would exacerbate students' depression? 
+```{r}
+dep_yes <- dep %>% filter(depression2 == "yes") %>% select(contains("idep"))
+namelist <- colnames(dep_yes)
+for(i in namelist) {
+  print(table(dep_yes[i]))
+  print(prop.table(table(dep_yes[i])))
+  print("-----------------------------------")
+}
+
+```
+
+![exacerbate](D:\CU TC\hudm 5026 intro to R\HUDM5026_R_HW\Final Project\exacerbate.png)
 
 
 
