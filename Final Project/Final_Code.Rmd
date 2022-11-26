@@ -117,8 +117,25 @@ naive bayes
 ```
 
 
-3. 选depression yes
+
+3. 选depression2 no
+
+
+
+4. 选depression2 yes
 ```{r}
-dep_s <- dep %>% filter(depression2 == "yes") 
-prop.table(table(dep_s[, 4:33]))
+dep_s <- dep %>% filter(depression2 == "yes") %>% select(4:33)
+
+namelist <- colnames(dep_s)
+for(i in namelist) {
+  print(table(dep_s[i]))
+  print(prop.table(table(dep_s[i])))
+  print("-----------------------------------")
+}
+
+
+
+
+
+
 ```

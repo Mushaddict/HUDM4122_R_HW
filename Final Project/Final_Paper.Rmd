@@ -102,9 +102,6 @@ The graph shows the race/gender/lgbtq statistical differences and percentage dif
 set.seed(1234)
 regression <- dep %>% select(depression, race2, division, gender2, 
                              gen.stat2, lgbtq2, financially.stable2)
-intrain <- createDataPartition(regression$depression, p = 0.8, list = FALSE)
-train1 <- regression[intrain, ]
-test1 <- regression[-intrain, ]
 logistic <- train(depression ~ ., data = regression, method = "glm", 
                   preProcess = c("scale", "center"), 
                   family = binomial(link = "logit"))
@@ -114,9 +111,22 @@ Based on the logistic regression that we selected from gender, race, division, g
 
 ### Finding:3. What scenario would alleviate students' depression? 
 
+ 
+ 
+ 
+ 
 
 ### Finding:4. What scenario would exacerbate students' depression? 
+```{r}
+dep_s <- dep %>% filter(depression2 == "yes") %>% select(4:33)
+namelist <- colnames(dep_s)
+for(i in namelist) {
+  print(table(dep_s[i]))
+  print(prop.table(table(dep_s[i])))
+  print("-----------------------------------")
+}
 
+```
 
 
 
