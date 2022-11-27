@@ -11,11 +11,14 @@ library(ggpubr)
 library(caret)
 ```
 # Literature Review
+
+
+
 Depression is the number one mental health concern among college students, but there is a lack of research exploring how online college science courses may exacerbate or lesson their depression. In the paper, there are 41 variables, which only 1 of them is continuous variable, which is GPA, and other 40 of those variables are categorical variables, which contains whether students are depression, how severity are their depression is, what are the cases that they have to face that will alleviate or exacerbate their depression, are there STEM majors or not, what division/gender are they, are they the first generation college students/LGBTQ, what are their financial status, are they going to keep depression, and what aspect of online course would affect students' depression.
 
 ## Current Study
 
-Some researches have already described that students would alleviate or exacerbate their depreesion due to some cases that they have experienced in online class. But different students with different background would behave different symptoms, whether they would keep depressed or they will no longer depressed. We cannot tell if their background such as race or ethnicity or gender would affect their opinions to let them depressed. To address these differences, we would have some questions that need to investigate to find out the solution for students that take online classes. 
+Some researches have already described that students would alleviate or exacerbate their depression due to some cases that they have experienced in online class. But different students with different background would behave different symptoms, whether they would keep depressed or they will no longer depressed. We cannot tell if their background such as race or ethnicity or gender would affect their opinions to let them depressed. To address these differences, we would have some questions that need to investigate to find out the solution for students that take online classes. 
 
 1. Is GPA/Race/Gender/LQBTQ/College Generation Status/Financial Status/STEM major/Year in College a greatest factor that affect students' depression? 
 2. Which kind of students would tend to be depressed? 
@@ -57,13 +60,19 @@ The students' general information showed that almost two-third of the students i
 To answer the research questions, the data set gives bunch of information of undergraduates enrolled in an in-person degree program who were completing science courses online in summer 2020, fall 2020, and spring 2021. This data set is given to let researchers understand how online science courses would alleviate or exacerbate students' depression symptoms. 
 
 ### QR:1. Is GPA/Race/Gender/LQBTQ/College Generation Status/Financial Status/STEM major/Year in College a greatest factor that affect students' depression? 
-To answer up what is the greatest factor that affect students' depression, the best way is to visualize them. 
+To answer up what is the greatest factor that affect students' depression, the best way is to visualize them, both in counting the frequency of each variable and the probability table for each variable. 
 For GPA, the best way to visualize GPA is to use boxplot and separate it with students who are depressed and students who are not. Boxplots are used to show distributions of numeric data values, especially when we want to compare them to multiple groups. The boxplot will provide information such as the 25% quantile, the median, the 75% quantile, the upper fence and lower fence. 
 
-
 ### QR:2. Which kind of students would tend to be depressed? 
+
+In order to find what properties do student have when they tend to be depressed when having online science course, I decide to use logistic regression to find what would be the significant characteristics. Since the data set of depression has already separated by "yes" and "no", what we have to do is select students race, division, gender, generation status, lgbtq community, and their financial status. We will use the formula such as `train(depression ~ race, division, gender, generation status, lqbtq, financial status)` to find the logistic regression model. Finally, choose the the variables that have `***` in the results, the `***` means that such variable has a small enough p-value which makes the variable to be statistic significant. 
+
 ### QR:3. What scenario would alleviate students' depression? 
+In this case, we want to first filter the students that had depression and still have depression at present, which gives us a bunch of data set. After this, we have to select all the columns that contains string `ddep`. `ddep` variable mean the aspect of online college science course that might help students manage their depression. We would use the frequency table and probability table to find out what are the common cases that help students to manage their depression. 
+
 ### QR:4. What scenario would exacerbate students' depression? 
+
+The case is similar with the case 3, which we also will first filter the students that had depression and still have depression at present, but this time we will select all the columns that contains string `idep`, which means the aspects of online college science courses that might let students' feelings of depression worse. We would also use the frequency table and probability table to find out what are the common cases that make students feel worse about depression.
 
 
 
@@ -109,7 +118,7 @@ summary(logistic)
 ```
 Based on the logistic regression that we selected from gender, race, division, generation, lgbtq, financial status, it can be seen that the white students (2.46e-06), women students (5.29e-08), lgbtq students (2e-16) have a significant value which their p-value are all in between 0 and 0.001, which shows being depression is strongly related to these circumstances. 
 
-### Finding:3. What scenario would alleviate students' depression? 
+### Finding:3. The action that students feel free to do coursework when and where makes them have less depression. 
 ```{r eval = FALSE}
 dep_no <- dep %>% filter(depression2 == "yes") %>% select(contains("ddep"))
 namelist <- colnames(dep_no)
@@ -123,9 +132,11 @@ for(i in namelist) {
 
  ![alleviate](D:\CU TC\hudm 5026 intro to R\HUDM5026_R_HW\Final Project\alleviate.png)
 
+Based on  results, most of the students feel their depression alleviated when they have the flexibility of doing coursework when they want (65.06%) and where they want (63.95%). Having an instructor who appears to care about mental health (58.18%) is also an important way for students to alleviate their depression. 
+
  
 
-### Finding:4. What scenario would exacerbate students' depression? 
+### Finding:4. Difficulty getting to know other student in class is the most common problem to let students exacerbate their depression. 
 ```{r eval = FALSE}
 dep_yes <- dep %>% filter(depression2 == "yes") %>% select(contains("idep"))
 namelist <- colnames(dep_yes)
@@ -139,7 +150,7 @@ for(i in namelist) {
 
 ![exacerbate](D:\CU TC\hudm 5026 intro to R\HUDM5026_R_HW\Final Project\exacerbate.png)
 
-
+Based on the results above, most of the students feel difficult to know other students in class (61.74%), and this let them feel depressed when having an online science course. The other common problem occurs such as students have difficulty getting to know instructors (51.31%), which makes students feel not good to discuss with professor when they have questions. Online monitored proctored testing (57.51%) is also an important factor that makes student exacerbate their depression because they may feel that they are monitor through internet, especially when they may have home distractions that interfere with their attention (54.37%). 
 
 # Discussion
 
@@ -147,5 +158,9 @@ for(i in namelist) {
 
 
 
+### Weakness
 
+In this paper, I feel like some part of coding is difficult for me to write confluently, especially when I deal with the frequency table and the probability table. All the results in the table are coming from the `print()` function because it seems that I have a difficulty deal with how to combine `table` and `prop.table` into one data frame with multiple variables. 
+
+Meanwhile, when I am doing the logistic regression of the data depression to other categorical variables, the specificity, accuracy, and F1 score are just above 60. I feel this might be not a good score, but I feel like I have a difficulty selecting and deleting variables that are not significant. In one way these variables seem to be irreplaceable, but when I do other methods such as knn, Naive Bayes, or LDA model, the scores are all seem to be up to 60. I cannot find a way to raise up the score for these models. I think the reason is because whether students have depression or not is not based on the cases that they engage when they take the online science course or what what race or gender or community they are in, but the result of depression is independent from other variables. 
 
