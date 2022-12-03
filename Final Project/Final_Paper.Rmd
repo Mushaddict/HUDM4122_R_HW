@@ -1,10 +1,10 @@
 ---
 title: "How Different Type of Behavior Would Alleviate or Excerbate Students Depression"
 author: "Shijie An"
-date: "2022-11-22"
+date: "2022-12-02"
 output: pdf_document
 ---
-```{r warning = FALSE}
+```{r warning = FALSE, results='hide', error=FALSE, message=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(ggpubr)
@@ -107,7 +107,7 @@ The graph shows the race/gender/lgbtq statistical differences and percentage dif
 
 
 ### Finding:2. The students who are white, who are women, who is in LGBTQ group seem to have significant statistical value to prove they will be depressed. 
-```{r eval = FALSE}
+```{r warning=FALSE}
 set.seed(1234)
 regression <- dep %>% select(depression, race2, division, gender2, 
                              gen.stat2, lgbtq2, financially.stable2)
