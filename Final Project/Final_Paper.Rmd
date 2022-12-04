@@ -116,6 +116,8 @@ logistic <- train(depression ~ ., data = regression, method = "glm",
                   family = binomial(link = "logit"))
 summary(logistic)
 ```
+The students 
+
 Based on the logistic regression that we selected from gender, race, division, generation, lgbtq, financial status, it can be seen that the white students (2.46e-06), women students (5.29e-08), lgbtq students (2e-16) have a significant value which their p-value are all in between 0 and 0.001, which shows being depression is strongly related to these circumstances. 
 
 ### Finding:3. The action that students feel free to do coursework when and where makes them have less depression. 
