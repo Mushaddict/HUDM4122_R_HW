@@ -64,7 +64,7 @@ for(i in 34:41) {
 
 The students' general information showed that almost two-third of the students in this query are women (66.94%), most of these students are continuing-generation students (58.76%), and most of them are STEM majors (55.78%). The following form represents a statistical student information.  
 
-![Student Information](D:\CU TC\hudm 5026 intro to R\HUDM5026_R_HW\Final Project\Student Information.png)
+![Student Information](..\Final Project\Student Information.png)
 
 ## Methods
 To answer the research questions, the data set gives bunch of information of undergraduates enrolled in an in-person degree program who were completing science courses online in summer 2020, fall 2020, and spring 2021. This data set is given to let researchers understand how online science courses would alleviate or exacerbate students' depression symptoms. 
@@ -142,7 +142,7 @@ for(i in namelist) {
 
 ```
 
- ![alleviate](D:\CU TC\hudm 5026 intro to R\HUDM5026_R_HW\Final Project\alleviate.png)
+ ![alleviate](../Final Project/alleviate.png)
 
 Based on  results, most of the students feel their depression alleviated when they have the flexibility of doing coursework when they want (65.06%) and where they want (63.95%). Having an instructor who appears to care about mental health (58.18%) is also an important way for students to alleviate their depression. 
 
@@ -160,7 +160,7 @@ for(i in namelist) {
 
 ```
 
-![exacerbate](D:\CU TC\hudm 5026 intro to R\HUDM5026_R_HW\Final Project\exacerbate.png)
+![exacerbate](..\Final Project\exacerbate.png)
 
 Based on the results above, most of the students feel difficult to know other students in class (61.74%), and this let them feel depressed when having an online science course. The other common problem occurs such as students have difficulty getting to know instructors (51.31%), which makes students feel not good to discuss with professor when they have questions. Online monitored proctored testing (57.51%) is also an important factor that makes student exacerbate their depression because they may feel that they are monitor through internet, especially when they may have home distractions that interfere with their attention (54.37%). 
 
