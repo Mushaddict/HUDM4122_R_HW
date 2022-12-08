@@ -12,13 +12,23 @@ library(caret)
 ```
 # Literature Review
 
+Depression is described as a common and serious mood disorder that results in persist feelings of sadness and hopelessness, as well as a loss of interest in activities that one once enjoyed (Bob Roehr, 2013). Additional symptoms of depression include weight changes, difficulty sleeping, loss of energy, difficulty thinking or concentrating, feelings of worthlessness or excessive guilt, and suicidality (Bob Roehr, 2013). While depression results from a complex interaction of psychological, social, and biological factors, studies have shown that increased stress caused by college can be a significant contributor to students depression. 
 
+Before 2020, mental disorders were leading causes of the global health-related burden, with depressive and anxiety disorders being leading contributors to this burden.As the field of clinical behavior analysis grows, it will benefit from analyses of increasingly complex and common clinical phenomena, especially those with significant public health implications. One such phenomenon is clinical depression, considered to be the “common cold” of outpatient populations (Jonathan W. Kanter, 2018). Up to 25 million people in the United States alone meet criteria for some type of depressive disorder in a given year (M. B. Keller, 1994).
 
-Depression is the number one mental health concern among college students, but there is a lack of research exploring how online college science courses may exacerbate or lesson their depression. In the paper, there are 41 variables, which only 1 of them is continuous variable, which is GPA, and other 40 of those variables are categorical variables, which contains whether students are depression, how severity are their depression is, what are the cases that they have to face that will alleviate or exacerbate their depression, are there STEM majors or not, what division/gender are they, are they the first generation college students/LGBTQ, what are their financial status, are they going to keep depression, and what aspect of online course would affect students' depression.
+Students, especially in the science subject may be particularly at risk for depression, given that such majors are noted to be particularly stressful due to their competitive nature and course work that is often perceived to “weed students out” (Cooper, Gin, Barnes and Brownell 2020). Since science courses have always been described as boring, repetitive, difficult, and math-intensive, these factors can trigger students avoid science courses during the time when they are not experiencing the pandemic.  After 2020, the COVID-19 pandemic has disrupted the lives of all including university students. With the preventive measures to reduce the transmission of COVID-19, all face-to-face teaching and learning are converted to e-learning. 
 
 ## Current Study
 
-Some researches have already described that students would alleviate or exacerbate their depression due to some cases that they have experienced in online class. But different students with different background would behave different symptoms, whether they would keep depressed or they will no longer depressed. We cannot tell if their background such as race or ethnicity or gender would affect their opinions to let them depressed. To address these differences, we would have some questions that need to investigate to find out the solution for students that take online classes. 
+E-learning is not new, with many universities around the world implementing it even before the COVID-19 pandemic. Fast wireless Internet access enables e-learning to take place on mobile devices such as laptops, smartphones and tablets, enabling e-learning to be implemented almost anywhere with a good Internet connection. With the exception of hands-on instruction involving mechanical handling, chemical and biological specimens, almost all learning can be done through e-learning. Even clinical teaching can be conducted to some extent through e-learning, although it can be challenging to conduct clinical examinations and treatments through e-learning.
+
+Most university students are familiar with face-to-face teaching as this is the conventional teaching method implemented since primary and secondary education. When they enter the universities, they may experience multifaceted pressures such as academic workload, economic difficulties and interpersonal relationships. These stressful experiences may put them at high risk of mental health problems such as stress, anxiety and depression. The rapid spread of COVID-19 and measures imposed to slow down the transmission and relieve the public health systems may further affect their mental health status. During the COVID-19 pandemic, university students were reported to experience higher levels of stress and anxiety (Moy and Ng 2021).
+
+In this study, what we have to put most focus on are what type of scenario would let students alleviate or exacerbate their depression due to some cases that they have experienced in e-learning. However, different students have different background and would behave different symptoms whether they would keep depressed or they would not feel so. It is hard to tell whether what group were they or what type were they would affect their opinions to let them feel depressed. To address these differences, we would have some questions that we want to investigate from the students. 
+
+In the data set that we gathered, there are 41 variables, but only one of them is a continuous variable, the GPA, and the rest variables are all categorical variable because the purpose for the query is to ask the rank or nominal data from the students so that researcher can analysis the data from different aspects. 
+
+Here are the four questions that this paper mainly discusses: 
 
 1. Is GPA/Race/Gender/LQBTQ/College Generation Status/Financial Status/STEM major/Year in College a greatest factor that affect students' depression? 
 2. Which kind of students would tend to be depressed? 
@@ -160,9 +170,16 @@ Based on the results above, most of the students feel difficult to know other st
 
 
 
-### Weakness
+## Weakness
 
 In this paper, I feel like some part of coding is difficult for me to write confluently, especially when I deal with the frequency table and the probability table. All the results in the table are coming from the `print()` function because it seems that I have a difficulty deal with how to combine `table` and `prop.table` into one data frame with multiple variables. 
 
 Meanwhile, when I am doing the logistic regression of the data depression to other categorical variables, the specificity, accuracy, and F1 score are just above 60. I feel this might be not a good score, but I feel like I have a difficulty selecting and deleting variables that are not significant. In one way these variables seem to be irreplaceable, but when I do other methods such as knn, Naive Bayes, or LDA model, the scores are all seem to be up to 60. I cannot find a way to raise up the score for these models. I think the reason is because whether students have depression or not is not based on the cases that they engage when they take the online science course or what what race or gender or community they are in, but the result of depression is independent from other variables. 
 
+# Reference
+
+- Keller M. B. (1994). Depression: a long-term illness. *The British journal of psychiatry. Supplement*, (26), 9–15.
+- Kanter, J. W., Busch, A. M., Weeks, C. E., & Landes, S. J. (2008). The nature of clinical depression: symptoms, syndromes, and behavior analysis. *The Behavior analyst*, *31*(1), 1–21. https://doi.org/10.1007/BF03392158
+- Dyson, R., & Renk, K. (2006). Freshmen adaptation to university life: depressive symptoms, stress, and coping. *Journal of clinical psychology*, *62*(10), 1231–1244. https://doi.org/10.1002/jclp.20295
+- Cooper, K. M., Gin, L. E., Barnes, M. E., & Brownell, S. E. (2020). An Exploratory Study of Students with Depression in Undergraduate Research Experiences. *CBE life sciences education*, *19*(2), ar19. https://doi.org/10.1187/cbe.19-11-0217
+- Moy, F. M., & Ng, Y. H. (2021). Perception towards E-learning and COVID-19 on the mental health status of university students in Malaysia. *Science progress*, *104*(3), 368504211029812. https://doi.org/10.1177/00368504211029812
