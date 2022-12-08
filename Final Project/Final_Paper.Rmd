@@ -1,7 +1,7 @@
 ---
 title: "How Different Type of Behavior Would Alleviate or Excerbate Students Depression"
 author: "Shijie An"
-date: "2022-12-02"
+date: "2022-12-08"
 output: pdf_document
 ---
 ```{r warning = FALSE, results='hide', error=FALSE, message=FALSE}
@@ -166,7 +166,13 @@ Based on the results above, most of the students feel difficult to know other st
 
 # Discussion
 
+The depression is in increasing trend among students who take online courses. Based on the dataset from the query, we have found that above half of the students are or have been experiencing the depression. The reason that caused students to be depressed including fear and worry about their own health and oof their loved ones, difficulty in concentrating, disruptions to sleeping patterns, decreased social interactions due to physical distancing, and increased concerns on academic performances (Son, Hedge, Smith, Wang, Sasangohar 2020). And due to the long-lasting pandemic situation and onerous measures such as lockdown and stay-at-home orders, the COVID-19 pandemic brings negative impacts on higher education. When students don't have the chances to know friends or instructors from the class because of the social distance requirement, they tend to have be more depressed, and this is one of the most happened reason that students have stated as they were experiencing depression. As face-to-face interactions and random encounters are minimized due to the social distancing measures, it is likely that individuals focus on those relationships that are spatially close, most meaningful, or most established which may partly be found outside the student community (Elmer, Mepham, Stadtfeld 2020). 
 
+The result of the study has also indicated that the sudden shift to exclusive online instruction and learning methods have rendered the students dissatisfied with their learning experience. One of the main reasons that might have influenced the dissatisfaction where the telecommunication infrastructure is proven to be below average and connection can break down during a class where students to leave and then relog into sessions, lose, data, and not to mention the power outage schedule which can render the students unable to even catch the classes or even their exams online (Kasse, Balunywa, 2013). 
+
+As a result, it seems that the technology along with the students staying in home has a direct relation to depression because students tend to face some technical problems which they may not solve so quickly. When students were taking the exam, the sudden power outage could cause students' mood change so extensively, thus caused anxiety. Also, when students were taking online course or online tests, they might feel nervous because they don't know who is supervising them, which would also cause misbehavior, thus cause them to be depressed. 
+
+What's more, based one the findings of what type of students would be when they were in depression, it showed that students who are white, who are women, and who are in LQBTQ groups tend to be depressed. Female gender firstly emerged as a significant risk for worsening health status and higher self-reported depression symptoms, as women seem to have both a higher prevalence of risk factors known to intensify during a pandemic, including preexisting depressive and anxiety disorder, chronic environmental strain and domestic violence (Bucciarelli, Nasi, Bianco, Seferovic, Ivkovic, Gallina, Mattioli 2022). What's more, they experience pandemic-related stressors specific to reproductive functioning and stages, i.e. fertility issues, pregnancy, miscarriage, postpartum depression, intimate partner violence (Almeida, Shrestha, Miller, 2020), which would also severe their depression under such circumstances. The same as LQBTQ group, under the COVID-19 era, gender straight participants had the lowest levels of depression, anxiety, and problem drinking compared with all other sexual orientation, sexual behavior, and gender identity groups, and, in general, LGBTQ+ participants were more likely to report that these health problems were "more than usual" (Akre, Anderson, Stojanovski, Chung, VanKim, Chae, 2021). Those finds have proved that the query follows the same distribution as the most of the samples from the large population. 
 
 
 
@@ -183,3 +189,10 @@ Meanwhile, when I am doing the logistic regression of the data depression to oth
 - Dyson, R., & Renk, K. (2006). Freshmen adaptation to university life: depressive symptoms, stress, and coping. *Journal of clinical psychology*, *62*(10), 1231–1244. https://doi.org/10.1002/jclp.20295
 - Cooper, K. M., Gin, L. E., Barnes, M. E., & Brownell, S. E. (2020). An Exploratory Study of Students with Depression in Undergraduate Research Experiences. *CBE life sciences education*, *19*(2), ar19. https://doi.org/10.1187/cbe.19-11-0217
 - Moy, F. M., & Ng, Y. H. (2021). Perception towards E-learning and COVID-19 on the mental health status of university students in Malaysia. *Science progress*, *104*(3), 368504211029812. https://doi.org/10.1177/00368504211029812
+- Son C, Hegde S, Smith A, Wang X, Sasangohar F. Effects of COVID-19 on College Students’ Mental Health in the United States: Interview Survey Study
+  J Med Internet Res 2020;22(9):e21279 https://www.jmir.org/2020/9/e21279 DOI: 10.2196/21279
+- Elmer, T., Mepham, K., & Stadtfeld, C. (2020). Students under lockdown: Comparisons of students' social networks and mental health before and during the COVID-19 crisis in Switzerland. *PloS one*, *15*(7), e0236337. https://doi.org/10.1371/journal.pone.0236337
+- Kasse, J. P., & Balunywa, W. (2013, February). An assessment of e-learning utilization by a section of Ugandan universities: challenges, success factors and way forward. In *International conference on ICT for Africa* (Vol. 15).
+- Bucciarelli, V., Nasi, M., Bianco, F., Seferovic, J., Ivkovic, V., Gallina, S., & Mattioli, A. V. (2022). Depression pandemic and cardiovascular risk in the COVID-19 era and long COVID syndrome: Gender makes a difference. *Trends in cardiovascular medicine*, *32*(1), 12–17. https://doi.org/10.1016/j.tcm.2021.09.009
+- Almeida, M., Shrestha, A. D., Stojanac, D., & Miller, L. J. (2020). The impact of the COVID-19 pandemic on women's mental health. *Archives of women's mental health*, *23*(6), 741–748. https://doi.org/10.1007/s00737-020-01092-2
+- Akré, E. R., Anderson, A., Stojanovski, K., Chung, K. W., VanKim, N. A., & Chae, D. H. (2021). Depression, Anxiety, and Alcohol Use Among LGBTQ+ People During the COVID-19 Pandemic. *American journal of public health*, *111*(9), 1610–1619. https://doi.org/10.2105/AJPH.2021.306394
