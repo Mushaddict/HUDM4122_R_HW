@@ -89,7 +89,7 @@ The case is similar with the case 3, which we also will first filter the student
 # Findings
 
 ### Finding:1. LGBTQ groups is the greatest factor that affect students' depression, gender identitiy is the second greatest factor that affect students' depression. 
-```{r plots, warning = FALSE, echo = FALSE}
+```{r plots, warning = FALSE}
 count_race <- dep %>% ggplot(aes(x = race2, fill = depression)) + 
   geom_bar(alpha = 0.3)
 perc_race <- dep %>% ggplot(aes(x = race2, fill = depression)) + 
