@@ -185,6 +185,7 @@ Meanwhile, when I am doing the logistic regression of the data depression to oth
 
 # Reference
 
+- Busch CA, Mohammed TF, Nadile EM, Cooper KM (2022) *Aspects of online college science courses that alleviate and exacerbate undergraduate depression*. PLoS ONE 17(6): e0269201. https://doi.org/10.1371/journal.pone.0269201
 - Keller M. B. (1994). Depression: a long-term illness. *The British journal of psychiatry. Supplement*, (26), 9–15.
 - Kanter, J. W., Busch, A. M., Weeks, C. E., & Landes, S. J. (2008). The nature of clinical depression: symptoms, syndromes, and behavior analysis. *The Behavior analyst*, *31*(1), 1–21. https://doi.org/10.1007/BF03392158
 - Dyson, R., & Renk, K. (2006). Freshmen adaptation to university life: depressive symptoms, stress, and coping. *Journal of clinical psychology*, *62*(10), 1231–1244. https://doi.org/10.1002/jclp.20295
