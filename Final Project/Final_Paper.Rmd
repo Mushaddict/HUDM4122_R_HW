@@ -1,5 +1,5 @@
 ---
-title: "How Different Type of Behavior Would Alleviate or Excerbate Students Depression"
+title: "How Different Type of Behavior Would Alleviate or Exacerbate Students Depression"
 author: "Shijie An"
 date: "2022-12-10"
 output: pdf_document
